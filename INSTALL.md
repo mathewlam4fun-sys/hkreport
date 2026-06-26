@@ -31,13 +31,13 @@ npx --version        # 任何版本
 
 ## 1. 申請 4 個 API 帳號（事前準備，15 分鐘）
 
-> **Futu 同事走捷徑**：你只需要準備自己的「公司 AI 平台 user-key」（向 IT/AI 平台組要）+ 自己的 Surge 帳號 + Tavily/Firecrawl 免費 key。
+> **Futu 同事走捷徑**：你只需要準備自己的「公司 AI 平台 user-key」（飛書 → AI 中台 → 個人頭像 → 密鑰管理 → 複製密鑰）+ 自己的 Surge 帳號 + Tavily/Firecrawl 免費 key。
 > Anthropic 代理 URL（`https://llm-proxy.futuoa.com/aws`）install.sh 已內建為默認，直接按 Enter 接受。
 
 依序註冊並把 key 存到記事本：
 
 ### 1.1 Anthropic Claude
-- **Futu 同事**：用公司 AI 平台分發的 user-key（`user-key-...` 開頭），無需到 anthropic.com 註冊
+- **Futu 同事**：飛書 → AI 中台 → 個人頭像 → 密鑰管理 → 複製密鑰（`user-key-...` 開頭），無需到 anthropic.com 註冊
 - **外部用戶**：到 https://console.anthropic.com/settings/keys 申請 API key，**儲值至少 US$10**（每期成本 ~US$0.5），複製 `sk-ant-...` 開頭的 key
 
 > 公司 key **不要走官方端點**（違規）。install.sh 會把 `ANTHROPIC_BASE_URL` 默認設為 Futu 代理，Futu 同事直接 Enter 接受。

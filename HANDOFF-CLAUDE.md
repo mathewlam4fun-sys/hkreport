@@ -37,7 +37,7 @@ cd hkreport
 
 | # | 變數 | 提問內容 | 取得來源 |
 |---|------|---------|---------|
-| 1 | `ANTHROPIC_API_KEY` | "請貼上你的 Anthropic API Key" | 公司 AI 平台分配的 user-key（找 IT/AI 平台組要）或 anthropic.com sk-ant- |
+| 1 | `ANTHROPIC_API_KEY` | "請貼上你的 Anthropic API Key" | 飛書 → AI 中台 → 個人頭像 → 密鑰管理 → 複製密鑰（user-key-...）；或 anthropic.com sk-ant- |
 | 2 | `ANTHROPIC_BASE_URL` | "Anthropic Base URL？默認走 Futu 代理" | 默認 `https://llm-proxy.futuoa.com/aws`，非 Futu 留空 |
 | 3 | `TAVILY_API_KEY` | "請貼上你的 Tavily key" | https://app.tavily.com 免費註冊，30 秒 |
 | 4 | `FIRECRAWL_API_KEY` | "請貼上你的 Firecrawl key" | https://firecrawl.dev 免費註冊 |
