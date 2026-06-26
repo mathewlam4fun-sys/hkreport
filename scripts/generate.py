@@ -123,7 +123,9 @@ def claude_call(system: str, user: str, json_mode: bool = False) -> str:
         print("ANTHROPIC_API_KEY env var not set", file=sys.stderr)
         sys.exit(2)
 
-    client = anthropic.Anthropic(api_key=api_key)
+    base_url = os.environ.get("ANTHROPIC_BASE_URL", "").strip() or None
+    client = anthropic.Anthropic(api_key=api_key, base_url=base_url) if base_url \
+        else anthropic.Anthropic(api_key=api_key)
     msg = client.messages.create(
         model=MODEL,
         max_tokens=16000,
