@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- {{TITLE}}: 富途HK行業快報 #NNN | YYYY.MM.DD — MM.DD --></title>
+<style>
+  :root {
+    --red: #DC2626; --red-bg: #FEF2F2; --red-border: #FECACA;
+    --yellow: #D97706; --yellow-bg: #FFFBEB; --yellow-border: #FDE68A;
+    --green: #059669; --green-bg: #F0FDF4; --green-border: #BBF7D0;
+    --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-700: #374151; --gray-900: #111827;
+    --blue: #2563EB; --blue-bg: #EFF6FF; --blue-border: #BFDBFE;
+    --purple: #7C3AED; --purple-bg: #F5F3FF; --purple-border: #DDD6FE;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; color: var(--gray-900); background: var(--gray-50); line-height: 1.6; }
+
+  /* ===== ISSUE SWITCHER (multi-issue navigation) ===== */
+  .issue-switcher {
+    position: sticky; top: 0; z-index: 1200;
+    background: var(--gray-900); color: white;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 6px 16px; font-size: 12px;
+  }
+  .issue-switcher a {
+    color: #94A3B8; text-decoration: none; padding: 3px 10px; border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
+  .issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
+  .issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ===== LAYOUT ===== */
+  .page { display: flex; }
+  .anchor-nav {
+    position: sticky; top: 40px; align-self: flex-start;
+    width: 140px; flex-shrink: 0;
+    margin-left: max(12px, calc((100vw - 960px - 140px) / 2 - 20px));
+    padding: 12px 0; font-size: 12px;
+  }
+  .anchor-nav .nav-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 8px; }
+  .anchor-nav a {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 8px; border-radius: 4px; margin-bottom: 1px;
+    color: var(--gray-500); text-decoration: none; font-size: 12px; line-height: 1.4;
+    transition: color 0.12s, background 0.12s;
+    border-left: 2px solid transparent;
+  }
+  .anchor-nav a:hover { color: var(--gray-900); background: var(--gray-100); border-left-color: var(--gray-300); }
+  .anchor-nav a.active { color: var(--blue); background: var(--blue-bg); border-left-color: var(--blue); font-weight: 600; }
+  .anchor-nav .dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .anchor-nav .dot.r { background: var(--red); }
+  .anchor-nav .dot.y { background: var(--yellow); }
+  .anchor-nav .dot.g { background: var(--green); }
+  .anchor-nav .spacer { height: 8px; }
+  .container { max-width: 960px; flex: 1; min-width: 0; padding: 24px 24px 48px; }
+
+  /* ===== HEADER ===== */
+  .header { background: linear-gradient(135deg, #1E293B 0%, #334155 100%); color: white; padding: 28px 28px 20px; border-radius: 12px; margin-bottom: 28px; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+  .header .subtitle { font-size: 13px; color: #94A3B8; margin-bottom: 14px; }
+  .header .meta { display: flex; gap: 20px; font-size: 12px; color: #CBD5E1; flex-wrap: wrap; }
+  .header .signal-summary { display: flex; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .signal-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; transition: transform 0.2s; cursor: default; }
+  .signal-badge:hover { transform: scale(1.06); }
+  .signal-badge.red { background: rgba(220,38,38,0.2); color: #FCA5A5; }
+  .signal-badge.yellow { background: rgba(217,119,6,0.2); color: #FCD34D; }
+  .signal-badge.green { background: rgba(5,150,105,0.2); color: #6EE7B7; }
+  .holiday-badge { display: inline-block; background: rgba(124,58,237,0.2); color: #C4B5FD; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-left: 8px; }
+
+  /* ===== SECTIONS ===== */
+  .section { margin-bottom: 32px; }
+  .section-header { display: flex; align-items: center; gap: 8px; padding: 10px 0; margin-bottom: 16px; border-bottom: 2px solid var(--gray-200); position: sticky; top: 34px; z-index: 10; background: var(--gray-50); }
+  .section-header .icon { font-size: 18px; }
+  .section-header h2 { font-size: 16px; font-weight: 700; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .tag.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .tag.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .tag.green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag.gray { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); }
+  .tag.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+
+  /* ===== SIGNAL CARDS ===== */
+  .signal-card { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .signal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .signal-card.red { border-left: 4px solid var(--red); }
+  .signal-card.yellow { border-left: 4px solid var(--yellow); }
+  .signal-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+  .num { display: inline-block; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: white; margin-right: 6px; vertical-align: middle; }
+  .num.red { background: var(--red); }
+  .num.yellow { background: var(--yellow); }
+  .fact-label, .think-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .fact-label { color: var(--gray-500); }
+  .think-label { color: var(--blue); }
+  .fact-content { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
+  .fact-content ul { margin-left: 16px; }
+  .fact-content li { margin-bottom: 3px; }
+  .think-content { background: var(--blue-bg); padding: 12px 16px; border-radius: 8px; border: 1px solid var(--blue-border); font-size: 13px; color: var(--gray-700); }
+  a.src { color: var(--blue); text-decoration: none; font-size: 11px; font-weight: 500; opacity: 0.7; margin-left: 3px; }
+  a.src:hover { opacity: 1; text-decoration: underline; }
+  .carry-tag { display: inline-block; background: var(--purple-bg); color: var(--purple); font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; margin-left: 6px; border: 1px solid var(--purple-border); }
+
+  /* ===== TABLES ===== */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  th { background: var(--gray-100); padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 2px solid var(--gray-200); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 12.5px; }
+  tr:hover { background: var(--gray-50); }
+  .highlight { background: #FEF3C7; }
+  .highlight td { font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .positive { color: var(--green); font-weight: 600; }
+  .muted { color: var(--gray-500); }
+  .card-wrap { background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; transition: box-shadow 0.2s ease; }
+  .card-wrap:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .card-wrap table { margin: 0; }
+  .card-wrap .card-subtitle { padding: 10px 18px 6px; font-size: 11px; color: var(--gray-400); }
+  .source-note { font-size: 11px; color: var(--gray-400); padding: 6px 18px 14px; border-top: 1px solid var(--gray-100); }
+
+  /* ===== NO-CHANGE BLOCK (incremental mode) ===== */
+  .no-change { background: white; border-radius: 10px; padding: 16px 20px; border: 1px solid var(--gray-200); color: var(--gray-500); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .no-change .nc-icon { font-size: 16px; }
+  .no-change a { color: var(--blue); text-decoration: none; font-weight: 500; }
+  .no-change a:hover { text-decoration: underline; }
+
+  /* ===== COLLAPSIBLE DETAILS (LIHKG raw feedback) ===== */
+  .lihkg-details { margin-bottom: 12px; }
+  .lihkg-details summary {
+    font-size: 12px; font-weight: 600; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; padding: 8px 0; list-style: none;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.15s;
+  }
+  .lihkg-details summary::-webkit-details-marker { display: none; }
+  .lihkg-details summary::before { content: '\25B6'; font-size: 10px; transition: transform 0.2s; }
+  .lihkg-details[open] summary::before { transform: rotate(90deg); }
+  .lihkg-details summary:hover { color: var(--blue); }
+  .lihkg-details > *:not(summary) { animation: detailsSlide 0.25s ease; }
+  @keyframes detailsSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== METRICS GRID ===== */
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .metric-card { background: white; border-radius: 8px; padding: 14px 16px; border: 1px solid var(--gray-200); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .metric-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .metric-card .label { font-size: 11px; color: var(--gray-500); font-weight: 500; }
+  .metric-card .value { font-size: 20px; font-weight: 700; margin: 2px 0; }
+  .metric-card .change { font-size: 12px; }
+  .metric-card .change.up { color: var(--green); }
+  .preview-box { background: white; border-radius: 10px; padding: 20px 24px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow 0.2s ease; }
+  .preview-box:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .preview-box ul { margin-left: 16px; font-size: 13px; color: var(--gray-700); }
+  .preview-box li { margin-bottom: 4px; }
+  .note { font-size: 12px; color: var(--gray-500); margin-bottom: 8px; padding: 0 2px; }
+  .disclaimer { text-align: center; font-size: 11px; color: var(--gray-500); margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    position: fixed; top: 34px; left: 0; height: 3px; z-index: 1100;
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    width: 0; border-radius: 0 2px 2px 0;
+    transition: width 0.08s linear;
+  }
+
+  /* ===== BACK TO TOP ===== */
+  .back-to-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gray-900); color: white; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 20px; line-height: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  }
+  .back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { background: var(--blue); }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-nav-btn {
+    display: none; position: fixed; top: 46px; right: 12px; z-index: 1050;
+    width: 38px; height: 38px; border-radius: 10px;
+    background: white; border: 1px solid var(--gray-200);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--gray-700);
+    transition: background 0.2s;
+  }
+  .mobile-nav-btn:hover { background: var(--gray-50); }
+  .mobile-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1040;
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .mobile-overlay.open { display: block; }
+  .mobile-panel {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 1050;
+    width: 240px; background: white;
+    padding: 56px 14px 24px; overflow-y: auto;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+    transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .mobile-panel.open { transform: translateX(0); }
+  .mobile-panel .mob-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 10px; }
+  .mobile-panel a {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 12px; border-radius: 8px; margin-bottom: 2px;
+    color: var(--gray-600); text-decoration: none; font-size: 14px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .mobile-panel a:hover, .mobile-panel a.active { background: var(--blue-bg); color: var(--blue); }
+  .mobile-panel .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .mobile-panel .dot.r { background: var(--red); }
+  .mobile-panel .dot.y { background: var(--yellow); }
+  .mobile-panel .dot.g { background: var(--green); }
+  .mobile-panel .sep { height: 1px; background: var(--gray-100); margin: 8px 10px; }
+
+  /* ===== SECTION FADE-IN ===== */
+  .section.anim { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .section.anim.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .anchor-nav { display: none; }
+    .container { padding: 16px 14px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .mobile-nav-btn { display: flex; }
+    .header { padding: 20px 18px 16px; margin-bottom: 20px; border-radius: 10px; }
+    .header h1 { font-size: 18px; }
+    .signal-card { padding: 16px 18px; }
+    .section-header { padding-top: 10px; top: 34px; }
+    .back-to-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 18px; }
+    .issue-switcher { font-size: 11px; gap: 6px; padding: 5px 10px; }
+  }
+  @media print {
+    .anchor-nav, .mobile-nav-btn, .back-to-top, .progress-bar, .issue-switcher { display: none !important; }
+    .signal-card, .card-wrap, .preview-box, .metric-card { break-inside: avoid; }
+    .section.anim { opacity: 1 !important; transform: none !important; }
+    .section-header { position: static; }
+  }
+</style>
+</head>
+<body>
+<!-- ===== ISSUE SWITCHER (required for #002+) ===== -->
+<div class="issue-switcher">
+  <span class="label">Issues</span>
+  <!-- {{ISSUE_LINKS}}: <a href="/NNN">#NNN (period)</a>, current issue gets class="active" -->
+</div>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- MOBILE NAV — mirror anchor-nav links; update href/dots per issue -->
+<button class="mobile-nav-btn" id="mobNavBtn" aria-label="Open navigation">&#9776;</button>
+<div class="mobile-overlay" id="mobOverlay"></div>
+<div class="mobile-panel" id="mobPanel">
+  <div class="mob-title"><!-- {{NAV_TITLE}} --></div>
+  <!-- {{MOBILE_NAV_LINKS}}: one <a href="#sec-xxx" class="mob-link"> per visible section -->
+  <!-- Use <span class="dot r/y/g"></span> for signal sections -->
+  <!-- Use <div class="sep"></div> between groups -->
+</div>
+
+<div class="page">
+
+<!-- LEFT ANCHOR NAV — same links as mobile panel -->
+<nav class="anchor-nav">
+  <div class="nav-title"><!-- {{NAV_TITLE}} --></div>
+  <!-- {{DESKTOP_NAV_LINKS}}: one <a href="#sec-xxx"> per visible section -->
+  <!-- Use <span class="dot r/y/g"></span> for signal sections -->
+  <!-- Use <div class="spacer"></div> between groups -->
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <h1><!-- {{REPORT_TITLE}}: 富途 HK 行業快報 #NNN --> <!-- {{HOLIDAY_BADGE}} optional: <span class="holiday-badge">假期窗口</span> --></h1>
+  <div class="subtitle"><!-- {{SUBTITLE}}: 統計周期：YYYY.MM.DD — MM.DD | optional context | 基於周期內客觀事實 + 業務思考 --></div>
+  <div class="meta">
+    <span><!-- {{META_SCOPE}}: 競品範圍：N 家（...） --></span>
+    <span><!-- {{META_SOURCES}}: 數據源：SFC / HKMA / ... --></span>
+    <span><!-- {{META_DELTA}} optional: vs #NNN 變動：僅顯示本期新增或狀態更新 --></span>
+  </div>
+  <div class="signal-summary">
+    <span class="signal-badge red"><!-- {{RED_COUNT}} --> 紅色</span>
+    <span class="signal-badge yellow"><!-- {{YELLOW_COUNT}} --> 黃色</span>
+    <span class="signal-badge green"><!-- {{GREEN_COUNT}} --> 綠色</span>
+  </div>
+</div>
+
+<!-- ===== RED SIGNALS ===== -->
+<div class="section" id="sec-red">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>紅色信號</h2><span class="tag red">建議本周內討論</span></div>
+  <!-- {{RED_SIGNAL_CARDS}}
+  Pattern per card:
+  <div class="signal-card red">
+    <h3><span class="num red">N</span>Title（date）<span class="carry-tag">延續 #NNN</span></h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content"><ul><li>...</li></ul></div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      <strong>vs #NNN 升級</strong>：delta description.<br>
+      Analysis...<br>
+      <strong>建議</strong>：action items.
+    </div>
+  </div>
+  -->
+</div>
+
+<!-- ===== YELLOW SIGNALS ===== -->
+<div class="section" id="sec-yellow">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>黃色信號</h2><span class="tag yellow">本期需關注</span></div>
+  <!-- {{YELLOW_SIGNAL_CARDS}}: same .signal-card.yellow pattern, <span class="num yellow"> -->
+</div>
+
+<!-- ===== GREEN SIGNALS ===== -->
+<div class="section" id="sec-green">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>綠色信號</h2><span class="tag green">知悉即可</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>#</th><th>日期</th><th>事實</th><th>一句話</th></tr></thead>
+      <tbody>
+        <!-- {{GREEN_ROWS}} -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== UNCHANGED SECTIONS (incremental mode) ===== -->
+<!-- When App Store / Feature / Review / Social / Keywords have no changes,
+     merge into a single no-change block: -->
+<div class="section" id="sec-appdata">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>App Store / 功能更新 / 用戶評論 / 社媒</h2><span class="tag gray">本期無變動</span></div>
+  <div class="no-change">
+    <span class="nc-icon">&#8644;</span>
+    <span>假期窗口（N 天），App Store 數據、功能更新、用戶評論、社媒聲量均無顯著變化。完整基線數據詳見 <a href="/NNN">#NNN 報告</a>。</span>
+  </div>
+</div>
+<!-- OR in full mode, render sec-appdata, sec-feature, sec-review, sec-keywords, sec-social separately (see report-structure.md) -->
+
+<!-- ===== LIHKG (enhanced structure) ===== -->
+<div class="section" id="sec-lihkg">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>連登券商輿情</h2><span class="tag purple">LIHKG <!-- {{PERIOD}} -->月熱帖</span></div>
+
+  <!-- Summary table -->
+  <div class="card-wrap" style="margin-bottom:16px;">
+    <table>
+      <thead><tr><th>帖文</th><th>日期</th><th>核心觀點</th></tr></thead>
+      <tbody>
+        <!-- {{LIHKG_SUMMARY_ROWS}} -->
+      </tbody>
+    </table>
+    <div class="source-note"><!-- {{LIHKG_SOURCE}} --></div>
+  </div>
+
+  <!-- Collapsible raw feedback -->
+  <details class="lihkg-details">
+    <summary>原始反饋明細（<!-- {{FEEDBACK_COUNT}} --> 條）</summary>
+    <!-- {{LIHKG_RAW_FEEDBACK}}
+    Per-competitor blocks:
+    <div class="card-wrap" style="margin-bottom:12px;">
+      <div class="card-subtitle" style="font-weight:700;color:var(--gray-700);">
+        Competitor <span class="tag yellow/green/red/gray" style="margin-left:6px;">Label</span>
+      </div>
+      <table>
+        <thead><tr><th style="width:55%">原始反饋</th><th>用戶</th><th>讚/踩</th><th>觀察</th></tr></thead>
+        <tbody>...</tbody>
+      </table>
+    </div>
+    -->
+  </details>
+
+  <!-- PM insights card -->
+  <!-- {{LIHKG_PM_INSIGHTS}}:
+  <div class="signal-card yellow" style="border-left-color: var(--purple);">
+    <h3 style="font-size:14px;">連登產品啟示（PM 視角）</h3>
+    <div class="think-content"><ul style="font-size:13px; margin-left:16px;">
+      <li><strong>Insight</strong>：explanation</li>
+    </ul></div>
+  </div>
+  -->
+</div>
+
+<!-- ===== FUTU BASELINE ===== -->
+<div class="section" id="sec-futu">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>富途 FY<!-- {{FY_YEAR}} --> 業績基線</h2><span class="tag gray"><!-- {{FY_DATE}} -->公布 | 本期無更新</span></div>
+  <div class="metrics-grid">
+    <!-- {{METRICS_CARDS}} -->
+  </div>
+  <!-- Optional no-change note -->
+  <div class="no-change">
+    <span class="nc-icon">&#8644;</span>
+    <span><!-- {{FUTU_NEXT_UPDATE}} --></span>
+  </div>
+</div>
+
+<!-- ===== RATES APPENDIX ===== -->
+<div class="section" id="sec-rates">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>附錄：融資利率基線</h2><span class="tag gray"><!-- {{RATES_CHANGE_NOTE}} --></span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>券商</th><th>港股孖展</th><th>美股孖展</th><th>vs 富途利差</th></tr></thead>
+      <tbody>
+        <!-- {{RATES_ROWS}} -->
+      </tbody>
+    </table>
+    <div class="source-note"><!-- {{RATES_SOURCE}} --></div>
+  </div>
+</div>
+
+<!-- ===== NEXT ISSUE PREVIEW ===== -->
+<div class="section" id="sec-preview">
+  <div class="section-header"><span class="icon"><!-- emoji --></span><h2>下期預告</h2><span class="tag gray"><!-- {{NEXT_PERIOD}} --></span></div>
+  <div class="preview-box">
+    <ul>
+      <!-- {{PREVIEW_ITEMS}} -->
+    </ul>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <!-- {{DISCLAIMER}} -->
+</div>
+
+</div><!-- /container -->
+</div><!-- /page -->
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+
+<script>
+(function(){
+  var bar = document.getElementById('progressBar');
+  function updateProgress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+  }
+  var btt = document.getElementById('backToTop');
+  function updateBtt(){ btt.classList.toggle('show', window.scrollY > 400); }
+  btt.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var navLinks = document.querySelectorAll('.anchor-nav a');
+  var mobLinks = document.querySelectorAll('.mob-link');
+  var sections = [];
+  navLinks.forEach(function(a){
+    var id = a.getAttribute('href');
+    if(id && id.startsWith('#')){
+      var el = document.querySelector(id);
+      if(el) sections.push({id: id, el: el});
+    }
+  });
+  function updateSpy(){
+    var current = '';
+    for(var i = sections.length - 1; i >= 0; i--){
+      if(sections[i].el.getBoundingClientRect().top <= 80){ current = sections[i].id; break; }
+    }
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === current); });
+    mobLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === current); });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){ updateProgress(); updateBtt(); updateSpy(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive: true});
+  updateProgress(); updateBtt(); updateSpy();
+
+  var allSections = document.querySelectorAll('.section');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, {rootMargin: '0px 0px -60px 0px', threshold: 0.05});
+    allSections.forEach(function(s){
+      if(s.getBoundingClientRect().top > window.innerHeight){ s.classList.add('anim'); obs.observe(s); }
+    });
+  }
+
+  var mobBtn = document.getElementById('mobNavBtn');
+  var mobOverlay = document.getElementById('mobOverlay');
+  var mobPanel = document.getElementById('mobPanel');
+  function openMob(){ mobOverlay.classList.add('open'); mobPanel.classList.add('open'); mobBtn.innerHTML = '&#10005;'; }
+  function closeMob(){ mobOverlay.classList.remove('open'); mobPanel.classList.remove('open'); mobBtn.innerHTML = '&#9776;'; }
+  mobBtn.addEventListener('click', function(){ mobPanel.classList.contains('open') ? closeMob() : openMob(); });
+  mobOverlay.addEventListener('click', closeMob);
+  mobLinks.forEach(function(a){ a.addEventListener('click', function(){ closeMob(); }); });
+})();
+</script>
+</body>
+</html>

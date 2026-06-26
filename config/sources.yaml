@@ -1,0 +1,254 @@
+# Competitive Intel Tracker - Data Sources Configuration
+# Last updated: 2026-04-04
+# Data Layer Strategy:
+#   Layer 1 = local files/snapshots  (fastest, most reliable)
+#   Layer 2 = CLI tools / REST APIs  (iTunes API, curl)
+#   Layer 3 = direct HTTP scrape     (static HTML pages)
+#   Layer 5 = Firecrawl API          (JS-rendered SPAs)
+
+# ============================================================
+# REGULATORY SOURCES (一手源 — 直接訂閱，不用二手解讀)
+# ============================================================
+regulatory:
+  sfc_news:
+    name: "SFC News & Announcements"
+    url: "https://www.sfc.hk/en/News-and-announcements/News"
+    type: scrape_json
+    frequency: daily
+    priority: T0
+    schema:
+      extract: "latest 15 news items with dates, titles, and URLs"
+    triggers:
+      - pattern: "licen"     # license, licensed, licensing
+        urgency: 24h
+      - pattern: "virtual asset"
+        urgency: 48h
+      - pattern: "stablecoin"
+        urgency: 24h
+      - pattern: "consultation"
+        urgency: 72h
+      - pattern: "margin"
+        urgency: 48h
+
+  sfc_circulars:
+    name: "SFC Circulars"
+    url: "https://www.sfc.hk/en/Rules-and-standards/Circulars"
+    type: scrape_json
+    frequency: daily
+    priority: T0
+
+  sfc_policy:
+    name: "SFC Policy Statements"
+    url: "https://www.sfc.hk/en/News-and-announcements/Policy-statements-and-announcements"
+    type: scrape_json
+    frequency: daily
+    priority: T0
+
+  hkma_press:
+    name: "HKMA Press Releases"
+    url: "https://www.hkma.gov.hk/eng/news-and-media/press-releases"
+    type: scrape_json
+    frequency: daily
+    priority: T0
+    filter_out:
+      - "Exchange Fund Bills Tender"
+      - "Scam alert"
+    triggers:
+      - pattern: "sandbox"
+        urgency: 48h
+      - pattern: "stablecoin"
+        urgency: 24h
+      - pattern: "e-HKD"
+        urgency: 72h
+      - pattern: "virtual asset"
+        urgency: 48h
+
+  hkma_fintech_sandbox:
+    name: "HKMA Fintech Supervisory Sandbox"
+    url: "https://www.hkma.gov.hk/eng/key-functions/international-financial-centre/fintech/fintech-supervisory-sandbox-fss"
+    type: scrape_diff
+    frequency: weekly
+    priority: T1
+
+  hkex_news:
+    name: "HKEX Regulatory Announcements"
+    url: "https://www.hkex.com.hk/News/Regulatory-Announcements"
+    type: scrape_json
+    frequency: weekly
+    priority: T1
+
+# ============================================================
+# COMPETITOR FEE/RATE PAGES (P0 — 融資利率定價)
+# ============================================================
+competitor_rates:
+  futu_fees:
+    name: "Futu HK Commission & Fees"
+    url: "https://www.futuhk.com/en/commissionnew"
+    type: firecrawl_scrape          # Layer 5 — JS-rendered SPA
+    frequency: daily
+    priority: P0
+    wait_for: 5000
+    watch_fields:
+      - "Margin Rate"
+      - "Commission"
+    schema:
+      extract: "all commission rates, margin rates, and financing interest rates"
+    triggers:
+      - field: "margin_rate_hkd"
+        baseline: "6.8%"
+        urgency: 24h
+      - field: "margin_rate_usd"
+        baseline: "4.8%"
+        urgency: 24h
+
+  futu_margin:
+    name: "Futu HK Margin Details"
+    url: "https://www.futuhk.com/en/products/margin"
+    type: firecrawl_scrape          # Layer 5 — JS-rendered SPA
+    frequency: daily
+    priority: P0
+    wait_for: 5000
+
+  tiger_fees:
+    name: "Tiger Brokers HK Fees"
+    url: "https://www.itiger.com/hk/en/commissions/fees/stocks_etf"
+    type: firecrawl_scrape          # Layer 5 — JS-rendered SPA
+    frequency: daily
+    priority: P0
+    wait_for: 5000
+    watch_fields:
+      - "margin"
+      - "commission"
+    triggers:
+      - field: "margin_rate_hkd"
+        baseline: "6.8%"
+        urgency: 24h
+      - field: "margin_rate_usd"
+        baseline: "4.8%"
+        urgency: 24h
+
+  tiger_margin:
+    name: "Tiger Brokers Margin Account"
+    url: "https://www.itiger.com/hk/en/invest/margin-account"
+    type: firecrawl_scrape          # Layer 5 — JS-rendered SPA
+    frequency: daily
+    priority: P0
+    wait_for: 5000
+
+  longbridge_fees:
+    name: "Longbridge HK Fees"
+    url: "https://support.longbridge.hk/topics/hkmarket/rpop8q?locale=en"
+    type: firecrawl_scrape          # Layer 5 — JS-rendered SPA
+    frequency: daily
+    priority: P0
+    wait_for: 5000
+    baseline_notes: "Platform Fee 15 HKD/order, Margin interest 6.50%"
+
+# ============================================================
+# COMPETITOR APP UPDATES (App Store version history)
+# ============================================================
+app_store:
+  futu_moomoo_hk:
+    name: "富途牛牛 (Futu) - HK App Store"
+    app_id: "592031984"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id592031984"
+    type: app_store
+    frequency: daily
+
+  tiger_hk:
+    name: "Tiger Trade - HK App Store"
+    app_id: "1023600494"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id1023600494"
+    type: app_store
+    frequency: daily
+
+  longbridge_hk:
+    name: "Longbridge - HK App Store"
+    app_id: "1470042146"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id1470042146"
+    type: app_store
+    frequency: daily
+
+  usmart_hk:
+    name: "uSMART - HK App Store"
+    app_id: "1463024118"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id1463024118"
+    type: app_store
+    frequency: daily
+
+  hashkey_hk:
+    name: "HashKey Exchange - HK App Store"
+    app_id: "6448627365"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id6448627365"
+    type: app_store
+    frequency: daily
+
+  webull_hk:
+    name: "Webull HK - HK App Store"
+    app_id: "1557435421"
+    store: "hk"
+    url: "https://apps.apple.com/hk/app/id1557435421"
+    type: app_store
+    frequency: daily
+
+# ============================================================
+# COMPETITOR JOB POSTINGS (3-6 month leading indicator)
+# ============================================================
+job_postings:
+  tiger_hk_jobs:
+    name: "Tiger Brokers HK Jobs"
+    search_query: "Tiger Brokers Hong Kong"
+    platforms: ["linkedin", "jobsdb"]
+    type: search
+    frequency: weekly
+    watch_keywords:
+      - "virtual asset"
+      - "crypto"
+      - "compliance"
+      - "wealth management"
+      - "API"
+      - "B2B"
+
+  longbridge_hk_jobs:
+    name: "Longbridge HK Jobs"
+    search_query: "Longbridge Securities Hong Kong"
+    platforms: ["linkedin", "jobsdb"]
+    type: search
+    frequency: weekly
+
+  usmart_hk_jobs:
+    name: "uSMART HK Jobs"
+    search_query: "uSMART Securities Hong Kong"
+    platforms: ["linkedin", "jobsdb"]
+    type: search
+    frequency: weekly
+
+  hashkey_hk_jobs:
+    name: "HashKey Hong Kong"
+    search_query: "HashKey Group Hong Kong"
+    platforms: ["linkedin", "jobsdb"]
+    type: search
+    frequency: weekly
+
+# ============================================================
+# COMPETITOR API/DOCS (B2B expansion signal)
+# ============================================================
+competitor_docs:
+  tiger_openapi:
+    name: "Tiger Open API Docs"
+    url: "https://quant.itigerup.com/openapi/en/python/overview/introduction.html"
+    type: scrape_diff
+    frequency: weekly
+    priority: signal
+
+  longbridge_openapi:
+    name: "Longbridge OpenAPI"
+    url: "https://open.longportapp.com/en/"
+    type: scrape_diff
+    frequency: weekly
+    priority: signal

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富途HK行業快報 #005 | 2026.04.21 — 05.20</title>
+<style>
+:root {
+  --red: #DC2626; --red-bg: #FEF2F2; --red-border: #FECACA;
+  --yellow: #D97706; --yellow-bg: #FFFBEB; --yellow-border: #FDE68A;
+  --green: #059669; --green-bg: #F0FDF4; --green-border: #BBF7D0;
+  --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-700: #374151; --gray-900: #111827;
+  --blue: #2563EB; --blue-bg: #EFF6FF; --blue-border: #BFDBFE;
+  --purple: #7C3AED; --purple-bg: #F5F3FF; --purple-border: #DDD6FE;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 44px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang HK", "Microsoft JhengHei", sans-serif; color: var(--gray-900); background: var(--gray-50); line-height: 1.6; }
+
+.issue-switcher {
+  position: sticky; top: 0; z-index: 1200;
+  background: var(--gray-900); color: white;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 6px 16px; font-size: 12px;
+}
+.issue-switcher a {
+  color: #94A3B8; text-decoration: none; padding: 3px 10px; border-radius: 4px;
+  transition: all 0.15s;
+}
+.issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
+.issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
+.issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.page { display: flex; }
+.anchor-nav {
+  position: sticky; top: 40px; align-self: flex-start;
+  width: 140px; flex-shrink: 0;
+  margin-left: max(12px, calc((100vw - 960px - 140px) / 2 - 20px));
+  padding: 12px 0; font-size: 12px;
+}
+.anchor-nav .nav-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 8px; }
+.anchor-nav a {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 8px; border-radius: 4px; margin-bottom: 1px;
+  color: var(--gray-500); text-decoration: none; font-size: 12px; line-height: 1.4;
+  transition: color 0.12s, background 0.12s;
+  border-left: 2px solid transparent;
+}
+.anchor-nav a:hover { color: var(--gray-900); background: var(--gray-100); border-left-color: var(--gray-300); }
+.anchor-nav a.active { color: var(--blue); background: var(--blue-bg); border-left-color: var(--blue); font-weight: 600; }
+.anchor-nav .dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.anchor-nav .dot.r { background: var(--red); }
+.anchor-nav .dot.y { background: var(--yellow); }
+.anchor-nav .dot.g { background: var(--green); }
+.anchor-nav .spacer { height: 8px; }
+.container { max-width: 960px; flex: 1; min-width: 0; padding: 24px 24px 48px; }
+
+.header { background: linear-gradient(135deg, #1E293B 0%, #334155 100%); color: white; padding: 28px 28px 20px; border-radius: 12px; margin-bottom: 28px; }
+.header h1 { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+.header .subtitle { font-size: 13px; color: #94A3B8; margin-bottom: 14px; }
+.header .meta { display: flex; gap: 20px; font-size: 12px; color: #CBD5E1; flex-wrap: wrap; }
+.header .signal-summary { display: flex; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); }
+.signal-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; transition: transform 0.2s; cursor: default; }
+.signal-badge:hover { transform: scale(1.06); }
+.signal-badge.red { background: rgba(220,38,38,0.2); color: #FCA5A5; }
+.signal-badge.yellow { background: rgba(217,119,6,0.2); color: #FCD34D; }
+.signal-badge.green { background: rgba(5,150,105,0.2); color: #6EE7B7; }
+
+.section { margin-bottom: 32px; }
+.section-header { display: flex; align-items: center; gap: 8px; padding: 10px 0; margin-bottom: 16px; border-bottom: 2px solid var(--gray-200); position: sticky; top: 34px; z-index: 10; background: var(--gray-50); }
+.section-header .icon { font-size: 18px; }
+.section-header h2 { font-size: 16px; font-weight: 700; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.tag.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.tag.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+.tag.green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.tag.gray { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); }
+.tag.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+
+.signal-card { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.signal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.signal-card.red { border-left: 4px solid var(--red); }
+.signal-card.yellow { border-left: 4px solid var(--yellow); }
+.signal-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+.num { display: inline-block; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: white; margin-right: 6px; vertical-align: middle; }
+.num.red { background: var(--red); }
+.num.yellow { background: var(--yellow); }
+.fact-label, .think-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.fact-label { color: var(--gray-500); }
+.think-label { color: var(--blue); }
+.fact-content { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
+.fact-content ul { margin-left: 16px; }
+.fact-content li { margin-bottom: 3px; }
+.think-content { background: var(--blue-bg); padding: 12px 16px; border-radius: 8px; border: 1px solid var(--blue-border); font-size: 13px; color: var(--gray-700); }
+a.src { color: var(--blue); text-decoration: none; font-size: 11px; font-weight: 500; opacity: 0.7; margin-left: 3px; }
+a.src:hover { opacity: 1; text-decoration: underline; }
+.carry-tag { display: inline-block; background: var(--purple-bg); color: var(--purple); font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; margin-left: 6px; border: 1px solid var(--purple-border); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+th { background: var(--gray-100); padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 2px solid var(--gray-200); }
+td { padding: 8px 10px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 12.5px; }
+tr:hover { background: var(--gray-50); }
+.highlight { background: #FEF3C7; }
+.highlight td { font-weight: 600; }
+.negative { color: var(--red); font-weight: 600; }
+.positive { color: var(--green); font-weight: 600; }
+.muted { color: var(--gray-500); }
+.card-wrap { background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; transition: box-shadow 0.2s ease; }
+.card-wrap:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.card-wrap table { margin: 0; }
+.card-wrap .card-subtitle { padding: 10px 18px 6px; font-size: 11px; color: var(--gray-400); }
+.source-note { font-size: 11px; color: var(--gray-400); padding: 6px 18px 14px; border-top: 1px solid var(--gray-100); }
+
+.no-change { background: white; border-radius: 10px; padding: 16px 20px; border: 1px solid var(--gray-200); color: var(--gray-500); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.no-change .nc-icon { font-size: 16px; }
+.no-change a { color: var(--blue); text-decoration: none; font-weight: 500; }
+.no-change a:hover { text-decoration: underline; }
+
+.lihkg-details { margin-bottom: 12px; }
+.lihkg-details summary {
+  font-size: 12px; font-weight: 600; color: var(--gray-500);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  cursor: pointer; padding: 8px 0; list-style: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.lihkg-details summary::-webkit-details-marker { display: none; }
+.lihkg-details summary::before { content: '\25B6'; font-size: 10px; transition: transform 0.2s; }
+.lihkg-details[open] summary::before { transform: rotate(90deg); }
+.lihkg-details summary:hover { color: var(--blue); }
+.lihkg-details > *:not(summary) { animation: detailsSlide 0.25s ease; }
+@keyframes detailsSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.metric-card { background: white; border-radius: 8px; padding: 14px 16px; border: 1px solid var(--gray-200); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.metric-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.metric-card .label { font-size: 11px; color: var(--gray-500); font-weight: 500; }
+.metric-card .value { font-size: 20px; font-weight: 700; margin: 2px 0; }
+.metric-card .change { font-size: 12px; }
+.metric-card .change.up { color: var(--green); }
+.preview-box { background: white; border-radius: 10px; padding: 20px 24px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow 0.2s ease; }
+.preview-box:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.preview-box ul { margin-left: 16px; font-size: 13px; color: var(--gray-700); }
+.preview-box li { margin-bottom: 4px; }
+.note { font-size: 12px; color: var(--gray-500); margin-bottom: 8px; padding: 0 2px; }
+.disclaimer { text-align: center; font-size: 11px; color: var(--gray-500); margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+
+.progress-bar {
+  position: fixed; top: 34px; left: 0; height: 3px; z-index: 1100;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0; border-radius: 0 2px 2px 0;
+  transition: width 0.08s linear;
+}
+.back-to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--gray-900); color: white; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 20px; line-height: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover { background: var(--blue); }
+
+.mobile-nav-btn {
+  display: none; position: fixed; top: 46px; right: 12px; z-index: 1050;
+  width: 38px; height: 38px; border-radius: 10px;
+  background: white; border: 1px solid var(--gray-200);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--gray-700);
+  transition: background 0.2s;
+}
+.mobile-nav-btn:hover { background: var(--gray-50); }
+.mobile-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1040;
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.mobile-overlay.open { display: block; }
+.mobile-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 1050;
+  width: 240px; background: white;
+  padding: 56px 14px 24px; overflow-y: auto;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+  transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+.mobile-panel.open { transform: translateX(0); }
+.mobile-panel .mob-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 10px; }
+.mobile-panel a {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 12px; border-radius: 8px; margin-bottom: 2px;
+  color: var(--gray-600); text-decoration: none; font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-panel a:hover, .mobile-panel a.active { background: var(--blue-bg); color: var(--blue); }
+.mobile-panel .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.mobile-panel .dot.r { background: var(--red); }
+.mobile-panel .dot.y { background: var(--yellow); }
+.mobile-panel .dot.g { background: var(--green); }
+.mobile-panel .sep { height: 1px; background: var(--gray-100); margin: 8px 10px; }
+
+.section.anim { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.section.anim.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .anchor-nav { display: none; }
+  .container { padding: 16px 14px; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .mobile-nav-btn { display: flex; }
+  .header { padding: 20px 18px 16px; margin-bottom: 20px; border-radius: 10px; }
+  .header h1 { font-size: 18px; }
+  .signal-card { padding: 16px 18px; }
+  .section-header { padding-top: 10px; top: 34px; }
+  .back-to-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 18px; }
+  .issue-switcher { font-size: 11px; gap: 6px; padding: 5px 10px; }
+  .card-wrap { margin-left: -14px; margin-right: -14px; border-radius: 0; border-left: none; border-right: none; }
+}
+@media print {
+  .anchor-nav, .mobile-nav-btn, .back-to-top, .progress-bar, .issue-switcher { display: none !important; }
+  .signal-card, .card-wrap, .preview-box, .metric-card { break-inside: avoid; }
+  .section.anim { opacity: 1 !important; transform: none !important; }
+  .section-header { position: static; }
+}
+</style>
+</head>
+<body>
+<div class="issue-switcher">
+  <span class="label">Issues</span>
+  <a href="001.html">#001 (03.01–04.03)</a>
+  <a href="002.html">#002 (04.01–04.07)</a>
+  <a href="003.html">#003 (04.07–04.14)</a>
+  <a href="004.html">#004 (04.14–04.20)</a>
+  <a href="005.html" class="active">#005 (04.21–05.20)</a>
+</div>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<button class="mobile-nav-btn" id="mobNavBtn" aria-label="Open navigation">&#9776;</button>
+<div class="mobile-overlay" id="mobOverlay"></div>
+<div class="mobile-panel" id="mobPanel">
+  <div class="mob-title">#005 導覽</div>
+  <a href="#sec-red" class="mob-link"><span class="dot r"></span>紅色信號</a>
+  <a href="#sec-yellow" class="mob-link"><span class="dot y"></span>黃色信號</a>
+  <a href="#sec-green" class="mob-link"><span class="dot g"></span>綠色信號</a>
+  <div class="sep"></div>
+  <a href="#sec-appdata" class="mob-link">App Store</a>
+  <a href="#sec-feature" class="mob-link">功能更新</a>
+  <a href="#sec-review" class="mob-link">用戶評論</a>
+  <a href="#sec-keywords" class="mob-link">關鍵詞</a>
+  <a href="#sec-social" class="mob-link">社媒掃描</a>
+  <a href="#sec-lihkg" class="mob-link">連登輿情</a>
+  <div class="sep"></div>
+  <a href="#sec-futu" class="mob-link">富途基線</a>
+  <a href="#sec-rates" class="mob-link">利率附錄</a>
+  <a href="#sec-preview" class="mob-link">下期預告</a>
+</div>
+
+<div class="page">
+
+<nav class="anchor-nav">
+  <div class="nav-title">#005 導覽</div>
+  <a href="#sec-red"><span class="dot r"></span>紅色信號</a>
+  <a href="#sec-yellow"><span class="dot y"></span>黃色信號</a>
+  <a href="#sec-green"><span class="dot g"></span>綠色信號</a>
+  <div class="spacer"></div>
+  <a href="#sec-appdata">App Store</a>
+  <a href="#sec-feature">功能更新</a>
+  <a href="#sec-review">用戶評論</a>
+  <a href="#sec-keywords">關鍵詞</a>
+  <a href="#sec-social">社媒掃描</a>
+  <a href="#sec-lihkg">連登輿情</a>
+  <div class="spacer"></div>
+  <a href="#sec-futu">富途基線</a>
+  <a href="#sec-rates">利率附錄</a>
+  <a href="#sec-preview">下期預告</a>
+</nav>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>富途 HK 行業快報 #005</h1>
+  <div class="subtitle">統計周期：2026.04.21 — 05.20 | 30 天完整周期 | 基於周期內客觀事實 + 業務思考</div>
+  <div class="meta">
+    <span>競品範圍：14 家（互聯網券商 + 銀行 + 國際 + Web3）</span>
+    <span>數據源：SFC / HKMA / HKEX / App Store / LIHKG / Tavily</span>
+  </div>
+  <div class="signal-summary">
+    <span class="signal-badge red">2 紅色</span>
+    <span class="signal-badge yellow">5 黃色</span>
+    <span class="signal-badge green">5 綠色</span>
+  </div>
+</div>
+
+<!-- ===== RED SIGNALS ===== -->
+<div class="section" id="sec-red">
+  <div class="section-header"><span class="icon">&#128680;</span><h2>紅色信號</h2><span class="tag red">建議本周內討論</span></div>
+
+  <div class="signal-card red">
+    <h3><span class="num red">1</span>LIHKG「轉會潮」升溫 + 隱藏收費投訴集中爆發（5/09）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>5/09</strong>：LIHKG 新帖「唔用富途轉邊間?」引發大量討論，Webull、IB 被推薦為替代方案 <a class="src" href="https://lihkg.com/thread/4103364/page/1" target="_blank">[LIHKG]</a></li>
+        <li><strong>4/21</strong>：「富途愈黎愈多隱藏收費」帖——用戶指 SEC 規費（4/4 起調至 0.00206%）被感知為隱藏加價 <a class="src" href="https://lihkg.com/thread/4096590/page/1" target="_blank">[LIHKG]</a></li>
+        <li><strong>4/19</strong>：「買賣美股，富X 牛手續費好貴」帖——用戶對比 IB 每筆省數百港元 <a class="src" href="https://lihkg.com/thread/4095080/page/3" target="_blank">[LIHKG]</a></li>
+        <li><strong>同期</strong>：Tiger 推 HK$3,200 迎新、Webull 推 HK$2,200 現金獎賞，形成「推拉」夾擊 <a class="src" href="https://www.hongkongcard.com/securities/plan/tigerbrokers" target="_blank">[HongKongCard]</a> <a class="src" href="https://www.moneysmart.hk/en/investments/webull-securities-account" target="_blank">[MoneySmart]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      <strong>vs #004 升級</strong>：上期「Webull 真零費永久定價」已作為 YELLOW 信號，本期 LIHKG 用戶開始實際行動討論轉會，信號從觀望升級為行動意圖。<br><br>
+      費用投訴集中在三個痛點：① SEC 規費透明度不足（用戶感知為「偷加」）；② 美股平台費 vs IB 對比劣勢明顯；③ 競品同步推出大額現金迎新形成心理落差。<br><br>
+      <strong>建議</strong>：① 費率頁增加 SEC 規費說明（監管轉嫁 vs 平台收費區分）；② 評估美股高頻交易客群的留存數據是否已出現異動；③ 考慮針對性回防方案（如美股交易免佣券、loyalty 計劃）。
+    </div>
+  </div>
+
+  <div class="signal-card red">
+    <h3><span class="num red">2</span>USM 無紙證券制度 11/16 強制上線 — 最後 6 個月倒數（4/16–4/24）<span class="carry-tag">延續 #001</span></h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>4/16–4/24</strong>：HKEX 完成三場 USM 實施簡報會（Teams + 實體，分英/粵語場次）<a class="src" href="https://www.hkex.com.hk/-/media/HKEX-Market/Services/Circulars-and-Notices/Participant-and-Members-Circulars/HKSCC/2026/ce_HKSCC_NOM_100_2026.pdf" target="_blank">[HKEX Circular]</a></li>
+        <li><strong>4月</strong>：HKSCC 透過 Client Connect 向所有參與者發出「USM 準備度問卷」<a class="src" href="https://www.hkex.com.hk/Services/Settlement-and-Depository/USM?sc_lang=en" target="_blank">[HKEX USM]</a></li>
+        <li><strong>3/30</strong>：SFC 確認目標上線日為 2026 年 11 月 16 日，新上市證券強制以無紙形式發行 <a class="src" href="https://www.timothyloh.com/insights/latest-news/uncertificated-securities-market-regime-targeted-for-launch-in-november-2026-20260330" target="_blank">[Timothy Loh]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      <strong>vs #004 維持紅色</strong>：距上線不足 180 天，HKEX 已進入「確認準備度」階段。若系統改造延誤，11/16 後將無法正常處理新股交割。<br><br>
+      關鍵時間節點：① 問卷結果反饋（預計 5-6 月）→ 確認我司是否被標記為「未達標」；② 第二次全市場演練（預計 7-8 月）→ 最後壓測機會；③ 11/16 強制切換 → 零容錯。<br><br>
+      <strong>建議</strong>：① 確認技術團隊已完成問卷提交；② 內部設定 8 月底為「USM Ready」硬截止日；③ 評估客戶端（App）是否需要 UI 變更以適配無紙證券持倉展示。
+    </div>
+  </div>
+</div>
+
+<!-- ===== YELLOW SIGNALS ===== -->
+<div class="section" id="sec-yellow">
+  <div class="section-header"><span class="icon">&#9888;&#65039;</span><h2>黃色信號</h2><span class="tag yellow">本期需關注</span></div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">3</span>Moomoo API Skills「Agentic Investing」全球首發（4/23）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>4/23</strong>：moomoo 發布 API Skills，允許個人 AI Agent 直連交易基礎設施，支持自然語言→策略邏輯→自動執行 <a class="src" href="https://www.stocktitan.net/news/FUTU/moomoo-launches-agentic-investing-with-introduction-of-moomoo-api-fvi247vymywb.html" target="_blank">[StockTitan]</a></li>
+        <li><strong>4/23</strong>：功能覆蓋美、加、港、新、日五個市場，支持回測+模擬盤，credentials 保持本地 <a class="src" href="https://finovate.com/moomoo-launches-agentic-investing-in-the-form-of-api-skills/" target="_blank">[Finovate]</a></li>
+        <li><strong>4/27</strong>：CNBC Fast Money 專訪 moomoo CEO Neil McDonald，FUTU 當日跌 4.12% <a class="src" href="https://www.facebook.com/FastMoney/posts/1315808057082931/" target="_blank">[CNBC]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      這是我司在海外市場的重大產品動作，需觀察幾個維度：<br>
+      ① <strong>採用率</strong>：API Skills 門檻較高（需使用者有 AI agent 開發能力），初期可能僅覆蓋 quant/tech-savvy 群體；<br>
+      ② <strong>監管反應</strong>：SFC 對 AI agent 自動交易的態度尚不明確，港股市場是否同步開放需確認；<br>
+      ③ <strong>競品跟進</strong>：Tiger 已有 AI 選股助手，若快速模仿則先發優勢窗口有限。<br><br>
+      <strong>需確認</strong>：香港站（富途牛牛）是否同步上線 API Skills？若未上線，競品可能利用此功能差異做文章。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">4</span>Longbridge 品牌重組 + 東南亞全面擴張（5/05）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>5/05</strong>：LONGPORT Whale（原 Longbridge Whale，1 月改名）在 Bursa Malaysia Stockbroking Trade Fair 宣布進入馬來西亞市場 <a class="src" href="https://mahersaham.com/blogs/longport-whale-malaysia-broker-infrastructure" target="_blank">[MaherSaham]</a></li>
+        <li><strong>5月</strong>：Longbridge 任命 Gavin Chia 為新加坡及東南亞區域 CEO <a class="src" href="https://www.prnewswire.com/apac/news-releases/longbridge-names-gavin-chia-as-singapore-and-regional-ceo-southeast-asia-marking-a-new-chapter-for-the-ai-powered-digital-brokerage-302767964.html" target="_blank">[PRNewswire]</a></li>
+        <li><strong>持續</strong>：LONGPORT Whale 已服務亞洲 100+ 金融機構，定位「AI-ready 證券交易基礎設施」</li>
+        <li><strong>5月</strong>：Longbridge SG 推出 10% p.a. 利息加碼（現金管理）<a class="src" href="https://growbeansprout.com/how-to-earn-longbridge-rewards" target="_blank">[GrowBeansprout]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      Longbridge 正從「券商 App」轉型為「券商基礎設施供應商」（B2B2C），這與我司 moomoo 的海外擴張形成差異化競爭路徑。<br><br>
+      <strong>影響評估</strong>：① 短期對港股業務無直接威脅；② 中期若 LONGPORT Whale 為馬來/泰等市場券商提供白標解決方案，可能間接壓縮 moomoo 在新興市場的獨立拓展空間；③ 新 CEO 任命信號強烈 — 東南亞是長橋戰略重心。<br><br>
+      <strong>建議</strong>：關注 LONGPORT Whale 客戶清單公開進展，評估是否有我司目標合作方重疊。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">5</span>Tiger 全方位獲客戰 + AI 升級（持續至 6/30）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>5月</strong>：Tiger 透過 HongKongCard、MoneySmart、蛋黃視野等渠道推送最高 HK$3,200 迎新獎賞（含開戶即拎 $550 + 留存 $1,200 + 交易 $900 + Crypto $500）<a class="src" href="https://www.hongkongcard.com/securities/plan/tigerbrokers" target="_blank">[HongKongCard]</a> <a class="src" href="https://yolkinsight.hk/tiger-promo/" target="_blank">[蛋黃視野]</a></li>
+        <li><strong>2026</strong>：Tiger 全面升級 24/7 AI 投資助手 — 對話式選股+百頁財報摘要+條件篩選 <a class="src" href="https://vocus.cc/article/69f8c988fd89780001a133bc" target="_blank">[Vocus]</a></li>
+        <li><strong>5/08</strong>：Tiger Brokers HK Facebook 母親節行銷保持高活躍度 <a class="src" href="https://www.facebook.com/tigerbrokershongkong/photos/979338831670591/" target="_blank">[Facebook]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      Tiger 的獲客策略「三管齊下」：金錢激勵（$3,200）+ 產品差異化（AI 助手）+ 渠道密度（多個 KOL/比較平台同時推送）。配合 RED#1 的富途費用投訴，形成精確的「推拉」效應。<br><br>
+      <strong>風險判斷</strong>：Tiger Q1 創歷史新高（#004 已報），有充足預算維持高補貼至 6/30。<br><br>
+      <strong>建議</strong>：① 監測 5 月新開戶轉化漏斗是否出現 Tiger 分流跡象；② AI 投資助手對標分析 — 我司 moomoo AI Skills 能力更強但門檻更高，是否需要一個低門檻「對話式」入口。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">6</span>Webull 限時激進快閃定價（5/14–5/21）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>5/14–5/21</strong>：Webull 透過 MoneySmart 推出「8 天限定」HK$2,200 現金迎新獎賞 <a class="src" href="https://www.moneysmart.hk/en/investments/webull-securities-account" target="_blank">[MoneySmart]</a></li>
+        <li><strong>持續</strong>：Webull 維持「真零費」永久定價（#004 已確認），疊加現金獎賞形成短期脈衝式吸引力</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      Webull 策略從「長期零費」轉為「零費 + 限時現金脈衝」，精確打擊價格敏感型用戶。8 天窗口製造緊迫感，配合 LIHKG 討論中被推薦為替代方案，轉化率可能高於常規推廣。<br><br>
+      <strong>建議</strong>：觀察 5/21 後 Webull 是否延續或加碼類似活動，判斷是否為持續性策略。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">7</span>螞蟻/耀才收購完成 — 整合啟動期<span class="carry-tag">延續 #001</span></h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/17</strong>：螞蟻集團子公司完成最終監管程序，正式取得耀才 50.55% 股權（HK$28.1 億）<a class="src" href="https://www.cnbc.com/2026/03/17/ant-group-bright-smart-securities-acquisition-hong-kong-brokerage.html" target="_blank">[CNBC]</a></li>
+        <li><strong>3/16</strong>：Bloomberg 報導螞蟻獲中國監管核准 <a class="src" href="https://www.bloomberg.com/news/articles/2026-03-16/ant-is-said-to-near-approval-for-hong-kong-brokerage-acquisition" target="_blank">[Bloomberg]</a></li>
+        <li><strong>3月</strong>：耀才股價單日暴漲 58%，收購完成確認 <a class="src" href="https://finance.yahoo.com/news/bright-smart-securities-rises-record-025612026.html" target="_blank">[Yahoo Finance]</a></li>
+        <li><strong>本期</strong>：整合期進行中，尚無公開可見的產品或品牌整合動作</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      <strong>vs #004 維持</strong>：收購已於 3 月完成，但目前處於「靜默整合期」— 尚未看到 App 改版、品牌更名或 AlipayHK 金融入口上線。<br><br>
+      <strong>判斷</strong>：螞蟻的整合通常耗時 6-12 個月（參考天弘/網商模式）。預計 H2 2026 會有可見動作。屆時若 AlipayHK（1,500 萬用戶）開放證券入口，將是對整個互聯網券商板塊的結構性衝擊。<br><br>
+      <strong>建議</strong>：維持監控，重點關注：① 耀才 App 改版/更名動態；② AlipayHK App 是否出現「投資」tab；③ 耀才招聘方向（產品/技術崗增量 = 整合加速信號）。
+    </div>
+  </div>
+</div>
+
+<!-- ===== GREEN SIGNALS ===== -->
+<div class="section" id="sec-green">
+  <div class="section-header"><span class="icon">&#9989;</span><h2>綠色信號</h2><span class="tag green">知悉即可</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>#</th><th>日期</th><th>事實</th><th>一句話</th></tr></thead>
+      <tbody>
+        <tr><td>8</td><td>5/19</td><td>富途宣布 Q1 2026 業績將於 5/28 美股盤前發布 <a class="src" href="https://finance.yahoo.com/markets/stocks/articles/futu-report-first-quarter-2026-080000331.html" target="_blank">[Yahoo]</a></td><td>留意指引更新</td></tr>
+        <tr><td>9</td><td>長駐 <span class="muted">4-5月活躍</span></td><td>LIHKG IB 用家討論區持續高活躍，IB 換匯優勢+低融資利率被反覆推薦 <a class="src" href="https://lihkg.com/thread/4055997/page/26" target="_blank">[LIHKG]</a></td><td class="negative">IB 為「大戶首選」共識</td></tr>
+        <tr><td>10</td><td>5/14</td><td>ZA Bank 更新至 v3.9.16，Mox Bank 更新至 v2.62.0，兩家虛擬銀行保持高頻迭代</td><td>投資功能逐步擴充</td></tr>
+        <tr><td>11</td><td>5月</td><td>Longbridge SG 推 10% p.a. 現金利息加碼（新用戶 180 天）<a class="src" href="https://growbeansprout.com/how-to-earn-longbridge-rewards" target="_blank">[Beansprout]</a></td><td>現金管理搶客</td></tr>
+        <tr><td>12</td><td>5月</td><td>IBKR 疑似出現安全事件討論（「IBKR又出事？」帖），但實質為駭客針對大資產客群，非系統漏洞 <a class="src" href="https://lihkg.com/thread/4094377/page/5" target="_blank">[LIHKG]</a></td><td>未影響用戶信心</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== APP STORE ===== -->
+<div class="section" id="sec-appdata">
+  <div class="section-header"><span class="icon">&#128241;</span><h2>App Store 數據面板</h2><span class="tag purple">10 家競品</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>App</th><th>iOS 評分</th><th>iOS 評論數</th><th>版本</th><th>最近更新</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td><strong>4.69</strong></td><td><strong>98,438</strong></td><td>v16.15</td><td>5/16</td></tr>
+        <tr><td>Tiger Trade</td><td class="positive">4.76</td><td>3,568</td><td>v9.5.7</td><td>5/18</td></tr>
+        <tr><td>Longbridge</td><td>4.68</td><td>1,622</td><td>v4.72</td><td>5/12</td></tr>
+        <tr><td>Webull</td><td>4.40</td><td>~2,000</td><td>—</td><td>—</td></tr>
+        <tr><td>華盛通</td><td class="negative">4.10</td><td>706</td><td>v2.9.300</td><td>5/07</td></tr>
+        <tr><td>HSBC HK</td><td>4.72</td><td>366,388</td><td>v3.69</td><td>5/07</td></tr>
+        <tr><td>BOCHK</td><td>4.74</td><td>227,399</td><td>v7.4.7</td><td>4/30</td></tr>
+        <tr><td>耀才</td><td>—</td><td>—</td><td>—</td><td>整合中</td></tr>
+        <tr><td>ZA Bank</td><td class="positive">4.76</td><td>57,946</td><td>v3.9.16</td><td>5/14</td></tr>
+        <tr><td>Mox Bank</td><td class="positive">4.77</td><td>87,462</td><td>v2.62</td><td>5/14</td></tr>
+        <tr><td>IBKR</td><td>4.20</td><td>~1,200</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：HK App Store iTunes API（截至 2026-05-20）| Webull/IBKR 數據取自上期基線 | 排名數據本期未抓取</div>
+  </div>
+</div>
+
+<!-- ===== FEATURE UPDATES ===== -->
+<div class="section" id="sec-feature">
+  <div class="section-header"><span class="icon">&#128640;</span><h2>功能更新</h2><span class="tag purple">App Store + 官網</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>券商</th><th>頻率</th><th>核心更新</th><th>官方 / 社區動態</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td>2版/月</td><td><strong>API Skills（Agentic Investing）4/23 全球發布</strong></td><td>CNBC 專訪；AI Agent 直連交易平台</td></tr>
+        <tr><td>Tiger Trade</td><td>2版/月</td><td><strong>24/7 AI 投資助手全面升級</strong></td><td>對話式選股+財報摘要+條件篩選</td></tr>
+        <tr><td>Longbridge</td><td>1-2版/月</td><td>v4.72 常規更新</td><td>品牌重組 LONGPORT Whale；SG CEO 任命</td></tr>
+        <tr><td>Webull</td><td>低頻</td><td>What's New 均為「修復已知問題」</td><td>限時 HK$2,200 快閃活動</td></tr>
+        <tr><td>華盛通</td><td>1版/月</td><td>v2.9.300 常規更新</td><td>Crypto ETF 持續推廣</td></tr>
+        <tr><td>HSBC HK</td><td>2版/月</td><td>v3.69 Banking 更新</td><td>HSBC Trade 25 投資功能持續</td></tr>
+        <tr><td>BOCHK</td><td>1版/月</td><td>v7.4.7 常規更新</td><td>—</td></tr>
+        <tr><td>耀才</td><td>—</td><td>螞蟻整合期，暫無可見更新</td><td>靜默期</td></tr>
+        <tr><td>ZA Bank</td><td>2版/月</td><td>v3.9.16 高頻迭代</td><td>投資功能持續擴充</td></tr>
+        <tr><td>Mox Bank</td><td>2版/月</td><td>v2.62 高頻迭代</td><td>投資產品擴展</td></tr>
+        <tr><td>IBKR</td><td>高頻</td><td>全球同步更新</td><td>LIHKG 口碑持續正面</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：App Store 版本記錄 + 官方公告 + 社區動態（截至 2026-05-20）</div>
+  </div>
+</div>
+
+<!-- ===== USER REVIEWS ===== -->
+<div class="section" id="sec-review">
+  <div class="section-header"><span class="icon">&#128172;</span><h2>用戶評論分析</h2><span class="tag purple">差評 + 好評 + 高頻提及</span></div>
+  <div class="card-wrap">
+    <div class="card-subtitle">信源：HK App Store、Google Play 用戶評論；LIHKG；KOL 比較文章（截至 2026-05-20）</div>
+    <table>
+      <thead><tr><th>App</th><th>差評焦點（1-2 星）</th><th>好評焦點（4-5 星）</th><th>本期高頻提及</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td><strong>SEC 規費「偷加」感知</strong>；美股手續費 vs IB 對比劣勢；牛牛圈信噪比 <em>（詳見下方）</em></td><td>App 介面最流暢；行情工具豐富；客服快+實體門市；AI 工具領先</td><td>LIHKG 轉會討論升溫；「用慣但唔推薦」共識加深</td></tr>
+        <tr><td>Tiger</td><td>迎新條款繁複（留存 60 日+交易筆數）；客服排隊長</td><td>AI 助手升級好評；IPO 零息暗盤；開戶 3 分鐘；Crypto 零佣</td><td class="positive">AI 投資助手口碑上升；獲客力度全城最高</td></tr>
+        <tr><td>長橋</td><td>部分用戶反映客服回應慢；A 股未上線</td><td><strong>終身零佣金</strong>（港/美/新）；介面簡潔；10% 利息加碼吸引</td><td>零佣+利息組合拳持續吸引轉戶</td></tr>
+        <tr><td>Webull</td><td class="negative"><strong>期權功能殘缺</strong>（港版 vs 美版差距）；HK 本地化不足；社群空白</td><td><strong>雙零</strong>（零佣+零平台費）永久；圖表專業；免費 Lv2</td><td>LIHKG 被推薦為「零費替代」；限時 $2,200 快閃</td></tr>
+        <tr><td>華盛通</td><td class="negative">評分 4.10 為互聯網券商最低；精細度差距；社區用戶基數小</td><td>Crypto ETF 支持；AI 選股；IPO 孖展</td><td>存在感持續下降</td></tr>
+        <tr><td>HSBC HK</td><td>投資功能入口較深；交易工具有限；佣金高（0.25%）</td><td>銀行安全感；一站式理財；4.72 高評分基於銀行整體</td><td>LIHKG 有人建議「入 HSBC One+ 先」</td></tr>
+        <tr><td>BOCHK</td><td>功能較基礎；適合保守型投資者</td><td>銀行安全感；整合性好</td><td class="muted">本期無顯著動態</td></tr>
+        <tr><td>耀才</td><td class="negative"><strong>整合靜默期</strong>；App 無更新；舊問題（閃退/UI過時）持續</td><td>歷史用戶基數大；線下網絡</td><td>螞蟻入主後等待 App 重建</td></tr>
+        <tr><td>ZA Bank</td><td>投資品種有限；非專業交易工具</td><td>4.76 高分；虛擬銀行+投資一體化；高頻更新</td><td>投資功能逐步擴充中</td></tr>
+        <tr><td>Mox Bank</td><td>投資品種有限；功能仍在初期</td><td>4.77 全場最高分；渣打系品牌信任</td><td>投資產品擴展中</td></tr>
+        <tr><td>IBKR</td><td>介面複雜學習曲線高；出入金偶有凍結案例</td><td><strong>150+ 交易所全品類</strong>；換匯最低；融資利率全港最低；閒資 4.5%</td><td>LIHKG 公認「大戶首選」；安全事件討論未影響信心</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FUTU DETAIL -->
+  <div class="card-wrap" id="sec-futu-review">
+    <div class="card-subtitle" style="font-weight:700; color:var(--gray-700); font-size:13px; padding-top:14px;">富途牛牛 4-5 月差評 + 高頻問題詳解</div>
+    <div class="card-subtitle">信源：LIHKG、App Store 評論、KOL 比較文章 | 僅含統計周期內（2026.04.21-05.20）新發生或顯著升溫事件</div>
+
+    <table>
+      <thead><tr><th style="width:36px">P</th><th style="width:140px">問題</th><th>詳情</th><th style="width:90px">規模</th><th style="width:56px">信源</th><th style="width:260px">原文摘錄</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="background:var(--red);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P0</span></td>
+          <td><strong>LIHKG 5/09：「唔用富途轉邊間?」轉會帖</strong></td>
+          <td>用戶主動發帖詢問替代方案，Webull 和 IB 被高票推薦，標誌用戶從「抱怨」轉為「行動」</td>
+          <td>連登 5/09<br>多人回應</td>
+          <td><a class="src" href="https://lihkg.com/thread/4103364/page/1" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4103364</div>
+            樓主：「<strong>用慣左富途但手續費真係貴</strong>」<br><br>
+            回覆 1（發逹太太）：「我用webull」<br><br>
+            回覆 2（思晴）：「小妹最近都試緊」<br><br>
+            → 帖文直接導向替代方案，非抱怨而是行動
+          </div></td>
+        </tr>
+        <tr>
+          <td><span style="background:var(--red);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P0</span></td>
+          <td><strong>LIHKG 4/21：「隱藏收費」投訴爆發</strong></td>
+          <td>SEC 規費調整（4/4 起 0.00206%）被用戶感知為富途自行加價，信任度顯著下降</td>
+          <td>連登 4/21<br>高熱度</td>
+          <td><a class="src" href="https://lihkg.com/thread/4096590/page/1" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4096590</div>
+            「唔係話幫富途，我最撚憎班大陸狗⋯⋯<strong>證監會規費（僅對賣出交易收取）（由美國證券交易委員會收取）</strong>從2026年4月4日起，為總金額的0.00206%」<br><br>
+            → 用戶混淆監管規費與平台收費，但感知已形成
+          </div></td>
+        </tr>
+        <tr>
+          <td><span style="background:var(--yellow);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P1</span></td>
+          <td><strong>LIHKG 4/19：美股手續費對比 IB</strong></td>
+          <td>用戶實算 40 萬交易額收 $2xx 手續費，與 IB 對比引發爭議。有用戶反駁「點叫貴」，但批評聲佔多數</td>
+          <td>連登 4/19<br>正反方辯論</td>
+          <td><a class="src" href="https://lihkg.com/thread/4095080/page/3" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4095080</div>
+            批評方：「買賣美股，富X 牛手續費好貴⋯⋯IB都要比，點止十蚊」<br><br>
+            反駁方（呂布）：「Futu 買40萬貨, 都係收我$2xx手續費 <strong>點叫貴呀？</strong>」<br><br>
+            折衷方：「咁入HSBC One+先」<br><br>
+            → 有維護者但整體偏負面，且出現銀行分流
+          </div></td>
+        </tr>
+        <tr>
+          <td><span style="background:var(--yellow);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P1</span></td>
+          <td><strong>IB 用家討論區持續高活躍（第 19 集）</strong></td>
+          <td>LIHKG IB 用家帖已延續至第 19 集，用戶反覆計算 IB 換匯省 1%+ 的優勢，成為「大戶轉富途」的持續拉力</td>
+          <td>連登 4-5月<br>長駐高活躍</td>
+          <td><a class="src" href="https://lihkg.com/thread/4055997/page/26" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4055997 p.26</div>
+            「我就咁簡單計數⋯⋯如果IB同富途比較，<strong>買美金，IB可以慳返1%以上嘅錢</strong>，第時買美金又可以慳返1%」<br><br>
+            「你可能坐兩年先打和，冇乜着數？」<br><br>
+            → 用戶從長期成本角度系統性比較，結論傾向 IB
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="padding:12px 18px 6px; font-size:12px; color:var(--gray-500); border-top:1px solid var(--gray-100);">
+      <strong>持續存在的結構性差評（非本期新增，基線參考）：</strong>
+    </div>
+    <table>
+      <thead><tr><th style="width:180px">長期問題</th><th>概要</th><th style="width:90px">競品對比</th></tr></thead>
+      <tbody>
+        <tr><td>港股 LV2 報價月費 HK$488</td><td>比同業均值高 57.93%；免費期結束後自動續費引不滿</td><td>長橋/Webull 免費</td></tr>
+        <tr><td>小額/DCA 最低消費 HK$18/單</td><td>佣金 $3 + 平台費 $15，月供 ETF vs IB US$0.35 差距 4.7 倍</td><td>IB 最優</td></tr>
+        <tr><td>牛牛圈信噪比低</td><td>UGC 門檻低致散戶建議充斥，「劣幣驅逐良幣」</td><td>長橋社區較精簡</td></tr>
+        <tr><td>SMS 釣魚詐騙</td><td>2025-06 警方首報 ~70 宗；風險持續存在但本期無新增重大事件</td><td class="muted">2025-06 首報</td></tr>
+        <tr><td>匯率點差（非美元）</td><td>港幣兌日元比 IB 高約 100bp，兌新幣高 ~84bp</td><td>IB 中價匯率最優</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note" style="padding-top:10px;">
+      <strong>本期觀察到的用戶轉向路徑：</strong>零費用導向 → Webull | 大額+換匯 → IB | 港股零佣 → 長橋 | 一站式銀行 → HSBC One+ | 迎新套利 → Tiger（$3,200）
+    </div>
+  </div>
+</div>
+
+<!-- ===== KEYWORDS ===== -->
+<div class="section" id="sec-keywords">
+  <div class="section-header"><span class="icon">&#127991;</span><h2>跨 App 高頻關鍵詞</h2><span class="tag gray">聚合分析</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th style="width:70px">維度</th><th>高頻關鍵詞</th><th>涉及 App</th><th>本期變化</th></tr></thead>
+      <tbody>
+        <tr><td class="negative">差評</td><td>隱藏收費 / SEC 規費</td><td>富途</td><td class="negative">&#8593; 本期急升</td></tr>
+        <tr><td class="negative">差評</td><td>手續費貴 / 佣金對比</td><td>富途 vs IB</td><td class="negative">&#8593; LIHKG 多帖</td></tr>
+        <tr><td class="negative">差評</td><td>期權功能殘缺（HK版）</td><td>Webull</td><td>→ 持平</td></tr>
+        <tr><td class="negative">差評</td><td>迎新條款繁複（60日+筆數）</td><td>Tiger</td><td>→ 持平</td></tr>
+        <tr><td class="negative">差評</td><td>整合靜默 / App 過時</td><td>耀才</td><td>→ 持平</td></tr>
+        <tr><td class="negative">差評</td><td>HK 本地化不足</td><td>Webull、IBKR</td><td>→ 持平</td></tr>
+        <tr><td class="positive">好評</td><td>零佣金 / 零平台費</td><td>Webull、長橋</td><td class="positive">&#8593; Webull 快閃疊加</td></tr>
+        <tr><td class="positive">好評</td><td>AI 投資助手 / Agentic</td><td>富途、Tiger</td><td class="positive">&#8593; 雙方同期升級</td></tr>
+        <tr><td class="positive">好評</td><td>換匯成本最低</td><td>IBKR</td><td class="positive">&#8593; LIHKG 反覆推薦</td></tr>
+        <tr><td class="positive">好評</td><td>App 介面流暢好用</td><td>富途、長橋</td><td>→ 富途核心護城河</td></tr>
+        <tr><td class="positive">好評</td><td>現金利息加碼</td><td>長橋（10% SG）、IBKR（4.5%）</td><td class="positive">&#8593; 新戰場</td></tr>
+        <tr><td class="positive">好評</td><td>開戶迎新獎賞豐厚</td><td>Tiger（$3,200）、Webull（$2,200）</td><td class="positive">&#8593; 歷史新高</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：LIHKG 財經台、App Store 評論、KOL 比較文章（HongKongCard/MoneySmart/蛋黃視野/TalkMoney）聚合 | 箭頭表示 vs #004 變化方向</div>
+  </div>
+</div>
+
+<!-- ===== SOCIAL MEDIA ===== -->
+<div class="section" id="sec-social">
+  <div class="section-header"><span class="icon">&#128241;</span><h2>社媒聲量掃描</h2><span class="tag purple">官方帳號 + 用戶提及</span></div>
+
+  <div class="card-wrap">
+    <div class="card-subtitle">官方社媒矩陣（4-5 月活躍度）</div>
+    <table>
+      <thead><tr><th>券商</th><th>主力平台</th><th>核心指標</th><th>內容策略</th><th>活躍度</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途/moomoo</strong></td><td>IG / LinkedIn / YouTube</td><td>IG ~40K；LinkedIn ~45K</td><td>API Skills 發布 PR；CNBC 專訪；社區 UGC</td><td class="positive">A</td></tr>
+        <tr><td>Tiger/老虎</td><td>IG / FB / KOL</td><td>HK FB 母親節行銷活躍</td><td>KOL 合作密度高（蛋黃/HKCard/MoneySmart）；節日行銷</td><td class="positive">A-</td></tr>
+        <tr><td>長橋/LONGPORT</td><td>小紅書 / PRNewswire</td><td>PR 覆蓋廣（品牌重組+CEO任命）</td><td>B2B 品牌重塑；SG/MY 市場拓展 PR</td><td>B+</td></tr>
+        <tr><td>HSBC</td><td>IG / 官網</td><td>全平台高頻（銀行量級）</td><td>Trade 25 投資功能持續曝光</td><td>B+</td></tr>
+        <tr><td>Webull</td><td>—</td><td>HK 社交幾近空白</td><td>依賴 MoneySmart/HKCard 渠道分發</td><td>D+</td></tr>
+        <tr><td>耀才</td><td>FB</td><td>靜默（整合期）</td><td>螞蟻收購後暫停常規內容</td><td>D</td></tr>
+        <tr><td>IBKR</td><td>全球統一</td><td>無 HK 獨立帳號</td><td>Quant Blog + 教育內容；不做本地行銷</td><td>D+</td></tr>
+        <tr><td>ZA Bank</td><td>IG / FB</td><td>高頻更新</td><td>虛擬銀行生活化內容</td><td>B</td></tr>
+        <tr><td>Mox</td><td>IG / YouTube</td><td>內容精緻</td><td>渣打系品牌向；投資教育</td><td>B</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：各平台公開主頁（截至 2026-05-20）| 活躍度 A-D 為相對排序</div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card-subtitle">用戶自然提及熱度（非官方內容）</div>
+    <table>
+      <thead><tr><th>平台</th><th>主導券商</th><th>情緒</th><th>本期關鍵信號</th></tr></thead>
+      <tbody>
+        <tr><td><strong>LIHKG 連登</strong></td><td>IB（資深）&gt; 富途（散戶）</td><td class="negative">批判升溫</td><td>轉會帖出現（5/09）；費用投訴帖（4/21）；IB 用家帖已第 19 集</td></tr>
+        <tr><td><strong>KOL 比較平台</strong></td><td>Tiger &gt; 長橋 &gt; Webull</td><td>獲客導向</td><td>HongKongCard/MoneySmart/蛋黃視野同步推送 Tiger $3,200 + Webull $2,200</td></tr>
+        <tr><td><strong>小紅書</strong></td><td>富途 &gt; 長橋</td><td>比較導向</td><td>內地客開 HK 戶需求持續；API Skills 技術向討論</td></tr>
+        <tr><td><strong>PRNewswire / 科技媒體</strong></td><td>富途（API Skills）&gt; 長橋（LONGPORT Whale）</td><td>正面</td><td>Finovate/StockTitan/CNBC 多方報導 Agentic Investing</td></tr>
+        <tr><td><strong>Instagram</strong></td><td>Tiger（節日行銷）</td><td>正面</td><td>母親節主題內容；老虎 HK FB 高互動</td></tr>
+        <tr><td><strong>Vocus / 博客</strong></td><td>IB vs Tiger 對比文</td><td>比較中性</td><td>2026年5月「終極券商對決：IB vs Tiger」長文</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：LIHKG、小紅書、KOL 平台、PRNewswire、Instagram、Vocus 公開內容（截至 2026-05-20）</div>
+  </div>
+</div>
+
+<!-- ===== LIHKG ===== -->
+<div class="section" id="sec-lihkg">
+  <div class="section-header"><span class="icon">&#128172;</span><h2>連登券商輿情</h2><span class="tag purple">LIHKG 4-5月熱帖</span></div>
+
+  <div class="card-wrap" style="margin-bottom:16px;">
+    <table>
+      <thead><tr><th>帖文</th><th>日期</th><th>核心觀點</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://lihkg.com/thread/4103364/page/1" target="_blank">唔用富途轉邊間?</a></td>
+          <td>5/09</td>
+          <td><strong>轉會潮</strong>：① Webull 被推薦為低成本替代；② IB 仍是大戶首選；③ 「用慣左但手續費真係貴」代表沉默多數</td>
+        </tr>
+        <tr>
+          <td><a href="https://lihkg.com/thread/4096590/page/1" target="_blank">富途愈黎愈多隱藏收費</a></td>
+          <td>4/21</td>
+          <td><strong>感知惡化</strong>：SEC 規費調整被用戶理解為「偷偷加價」，信任度下降</td>
+        </tr>
+        <tr>
+          <td><a href="https://lihkg.com/thread/4095080/page/3" target="_blank">買賣美股，富X 牛手續費好貴</a></td>
+          <td>4/19</td>
+          <td><strong>價格對比</strong>：用戶計算 40 萬交易額收 $2xx vs IB 更低，但有人反駁「點叫貴」</td>
+        </tr>
+        <tr>
+          <td><a href="https://lihkg.com/thread/4055997/page/26" target="_blank">IB用家討論區(19)</a></td>
+          <td>長駐 <span class="muted">4-5月活躍</span></td>
+          <td><strong>IB 優勢共識</strong>：換匯慳 1%+、融資利率最低、適合長期大額用戶</td>
+        </tr>
+        <tr>
+          <td><a href="https://lihkg.com/thread/4094377/page/5" target="_blank">IBKR又出事？</a></td>
+          <td>4月</td>
+          <td><strong>安全討論</strong>：IB 客戶資產 US$7,894 億成為駭客目標，但未動搖用戶信心</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：LIHKG 財經台（截至 2026-05-20）| 帖文引用日期經人工覈實</div>
+  </div>
+
+  <details class="lihkg-details">
+    <summary>原始反饋明細（12 條）</summary>
+
+    <div class="card-wrap" style="margin-bottom:12px;">
+      <div class="card-subtitle" style="font-weight:700;color:var(--gray-700);">
+        富途牛牛 <span class="tag red" style="margin-left:6px;">費用投訴</span>
+      </div>
+      <table>
+        <thead><tr><th style="width:55%">原始反饋</th><th>用戶</th><th>觀察</th></tr></thead>
+        <tbody>
+          <tr><td>"用慣左富途但手續費真係貴"</td><td>素人愛好者</td><td class="negative">主動尋求替代</td></tr>
+          <tr><td>"SEC 規費…由美國證券交易委員會收取…0.00206%"</td><td>匿名</td><td class="negative">感知為隱藏收費</td></tr>
+          <tr><td>"Futu 買40萬貨, 都係收我$2xx手續費 點叫貴呀？"</td><td>吕布</td><td class="positive">少數維護聲音</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-wrap" style="margin-bottom:12px;">
+      <div class="card-subtitle" style="font-weight:700;color:var(--gray-700);">
+        Webull <span class="tag green" style="margin-left:6px;">替代方案</span>
+      </div>
+      <table>
+        <thead><tr><th style="width:55%">原始反饋</th><th>用戶</th><th>觀察</th></tr></thead>
+        <tbody>
+          <tr><td>"我用webull"</td><td>發逹太太</td><td class="positive">簡潔推薦</td></tr>
+          <tr><td>"小妹最近都試緊"</td><td>思晴</td><td>新用戶嘗試中</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-wrap" style="margin-bottom:12px;">
+      <div class="card-subtitle" style="font-weight:700;color:var(--gray-700);">
+        IB 盈透 <span class="tag green" style="margin-left:6px;">大戶共識</span>
+      </div>
+      <table>
+        <thead><tr><th style="width:55%">原始反饋</th><th>用戶</th><th>觀察</th></tr></thead>
+        <tbody>
+          <tr><td>"IB同富途比較，買美金，IB可以慳返1%以上嘅錢"</td><td>匿名</td><td class="positive">換匯核心優勢</td></tr>
+          <tr><td>"IB 融資利率全港最低"</td><td>多用戶</td><td class="positive">槓桿用戶首選</td></tr>
+          <tr><td>"IBKR客戶總資產：7894億美元…駭客搵食傾向搵更有錢既落手"</td><td>匿名</td><td>安全討論但未動搖信心</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-wrap" style="margin-bottom:12px;">
+      <div class="card-subtitle" style="font-weight:700;color:var(--gray-700);">
+        HSBC <span class="tag yellow" style="margin-left:6px;">銀行截流</span>
+      </div>
+      <table>
+        <thead><tr><th style="width:55%">原始反饋</th><th>用戶</th><th>觀察</th></tr></thead>
+        <tbody>
+          <tr><td>"咁入HSBC One+先"</td><td>幸福的彼端</td><td class="negative">銀行作為替代方案被提及</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <div class="signal-card yellow" style="border-left-color: var(--purple);">
+    <h3 style="font-size:14px;">連登產品啟示（PM 視角）</h3>
+    <div class="think-content"><ul style="font-size:13px; margin-left:16px;">
+      <li><strong>費率透明度 > 費率高低</strong>：用戶對 SEC 規費的反應表明，問題核心不是絕對金額（$2xx/40萬實際很低），而是「突然多出一項沒見過的收費」帶來的不信任感。改善收費明細的呈現方式可能比降價更有效。</li>
+      <li><strong>「用慣但不推薦」困境加深</strong>：富途的護城河正在從「產品好用」降級為「遷移成本高」。一旦競品提供一鍵轉倉或現金補貼覆蓋遷移成本，留存率可能急劇下降。</li>
+      <li><strong>分層用戶策略缺口</strong>：LIHKG 共識日益清晰 — 大戶走 IB（低成本+專業）、價格敏感走 Webull（零費）、新手留富途（好用）。我司缺乏針對中間層（$50-200 萬資產）的差異化留存方案。</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- ===== FUTU BASELINE ===== -->
+<div class="section" id="sec-futu">
+  <div class="section-header"><span class="icon">&#128200;</span><h2>富途 FY2025 業績基線</h2><span class="tag gray">Q1 2026 業績 5/28 公布</span></div>
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="label">營收</div><div class="value">HK$228億</div><div class="change">FY2025</div></div>
+    <div class="metric-card"><div class="label">淨利潤</div><div class="value">HK$113億</div><div class="change">淨利率 49.5%</div></div>
+    <div class="metric-card"><div class="label">入金客戶</div><div class="value">337萬</div><div class="change">2026 目標 +80萬</div></div>
+    <div class="metric-card"><div class="label">客戶資產</div><div class="value">HK$1.23萬億</div><div class="change">歷史新高</div></div>
+    <div class="metric-card"><div class="label">孖展賬簿</div><div class="value">HK$677億</div><div class="change">利息收入主力</div></div>
+    <div class="metric-card"><div class="label">利息收入</div><div class="value">HK$104億</div><div class="change">FY2025</div></div>
+    <div class="metric-card"><div class="label">2026 指引</div><div class="value">80萬</div><div class="change">新入金客戶目標</div></div>
+    <div class="metric-card"><div class="label">股票</div><div class="value">$126.15</div><div class="change">NASDAQ: FUTU</div></div>
+  </div>
+  <div class="no-change">
+    <span class="nc-icon">&#8644;</span>
+    <span>下次更新：<strong>Q1 2026 業績（2026 年 5 月 28 日）</strong>。預計公布新入金客戶數、客戶資產增量、API Skills 採用數據。</span>
+  </div>
+</div>
+
+<!-- ===== RATES ===== -->
+<div class="section" id="sec-rates">
+  <div class="section-header"><span class="icon">&#128181;</span><h2>附錄：融資利率基線</h2><span class="tag gray">本期無變動</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>券商</th><th>港股孖展</th><th>美股孖展</th><th>vs 富途利差</th></tr></thead>
+      <tbody>
+        <tr><td>Webull</td><td class="positive">5.70%</td><td class="positive">4.75%</td><td class="positive">-110bp / -5bp</td></tr>
+        <tr><td>Longbridge</td><td class="positive">5.75%</td><td>—</td><td class="positive">-105bp / —</td></tr>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td><strong>6.80%</strong></td><td><strong>4.80%</strong></td><td>基準</td></tr>
+        <tr><td>Tiger</td><td>6.80%</td><td>4.80%</td><td>0bp / 0bp</td></tr>
+        <tr><td>IBKR</td><td class="negative">7.08%</td><td class="negative">6.83%</td><td>+28bp / +203bp</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">
+      信源：各券商官網（截至 2026-05-20）| 利率按港股孖展升序排列 | 與 #004 對比無任何券商調整利率<br>
+      <strong>觀察</strong>：Webull/Longbridge 港股孖展利率持續低於富途 100bp+，配合零佣金形成對價格敏感用戶的完整成本優勢；IBKR 美股孖展名義利率雖高，但 LIHKG 用戶指出其換匯優勢可覆蓋利差。
+    </div>
+  </div>
+</div>
+
+<!-- ===== NEXT ISSUE PREVIEW ===== -->
+<div class="section" id="sec-preview">
+  <div class="section-header"><span class="icon">&#128302;</span><h2>下期預告</h2><span class="tag gray">#006 預計 2026.05.21 — 06.03</span></div>
+  <div class="preview-box">
+    <ul>
+      <li><strong>富途 Q1 2026 業績（5/28）</strong>— 入金客戶增量、客戶資產、API Skills 初始數據、利息收入趨勢</li>
+      <li><strong>Tiger Q1 業績預期</strong>— 與富途交叉對比客戶增長勢頭</li>
+      <li><strong>Webull 快閃結束後（5/21）</strong>— 觀察是否轉為常態化活動</li>
+      <li><strong>螞蟻/耀才整合進展</strong>— 6 月預計首批可見動作</li>
+      <li><strong>USM 第二階段準備</strong>— 參與者問卷結果 + 下階段演練時間表</li>
+      <li><strong>HKMA 穩定幣牌照後續</strong>— HSBC PayMe Stablecoin 進展追蹤</li>
+    </ul>
+  </div>
+</div>
+
+<div class="disclaimer">
+  試刊 #005 | 統計周期 2026.04.21 — 05.20（30 天完整周期）| 信號分級基於周期內公開信息<br>
+  業務影響評估為 PM 視角初判，建議結合內部數據交叉驗證後做行動決策
+</div>
+
+</div><!-- /container -->
+</div><!-- /page -->
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+
+<script>
+(function(){
+  var bar = document.getElementById('progressBar');
+  function updateProgress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+  }
+  var btt = document.getElementById('backToTop');
+  function updateBtt(){ btt.classList.toggle('show', window.scrollY > 400); }
+  btt.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var navLinks = document.querySelectorAll('.anchor-nav a');
+  var mobLinks = document.querySelectorAll('.mob-link');
+  var sections = [];
+  navLinks.forEach(function(a){
+    var id = a.getAttribute('href');
+    if(id && id.startsWith('#')){
+      var el = document.querySelector(id);
+      if(el) sections.push({id: id, el: el});
+    }
+  });
+  function updateSpy(){
+    var current = '';
+    for(var i = sections.length - 1; i >= 0; i--){
+      if(sections[i].el.getBoundingClientRect().top <= 80){ current = sections[i].id; break; }
+    }
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === current); });
+    mobLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === current); });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){ updateProgress(); updateBtt(); updateSpy(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive: true});
+  updateProgress(); updateBtt(); updateSpy();
+
+  var allSections = document.querySelectorAll('.section');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, {rootMargin: '0px 0px -60px 0px', threshold: 0.05});
+    allSections.forEach(function(s){
+      if(s.getBoundingClientRect().top > window.innerHeight){ s.classList.add('anim'); obs.observe(s); }
+    });
+  }
+
+  var mobBtn = document.getElementById('mobNavBtn');
+  var mobOverlay = document.getElementById('mobOverlay');
+  var mobPanel = document.getElementById('mobPanel');
+  function openMob(){ mobOverlay.classList.add('open'); mobPanel.classList.add('open'); mobBtn.innerHTML = '&#10005;'; }
+  function closeMob(){ mobOverlay.classList.remove('open'); mobPanel.classList.remove('open'); mobBtn.innerHTML = '&#9776;'; }
+  mobBtn.addEventListener('click', function(){ mobPanel.classList.contains('open') ? closeMob() : openMob(); });
+  mobOverlay.addEventListener('click', closeMob);
+  mobLinks.forEach(function(a){ a.addEventListener('click', function(){ closeMob(); }); });
+})();
+</script>
+</body>
+</html>

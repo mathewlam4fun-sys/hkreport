@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富途HK行業快報 #001 | 2026.03.01 — 04.03</title>
+<style>
+  :root {
+    --red: #DC2626; --red-bg: #FEF2F2; --red-border: #FECACA;
+    --yellow: #D97706; --yellow-bg: #FFFBEB; --yellow-border: #FDE68A;
+    --green: #059669; --green-bg: #F0FDF4; --green-border: #BBF7D0;
+    --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-700: #374151; --gray-900: #111827;
+    --blue: #2563EB; --blue-bg: #EFF6FF; --blue-border: #BFDBFE;
+    --purple: #7C3AED; --purple-bg: #F5F3FF; --purple-border: #DDD6FE;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; color: var(--gray-900); background: var(--gray-50); line-height: 1.6; }
+
+  /* ===== LAYOUT ===== */
+  .page { display: flex; }
+
+  /* Left anchor nav */
+  .anchor-nav {
+    position: sticky; top: 40px; align-self: flex-start;
+    width: 140px; flex-shrink: 0;
+    margin-left: max(12px, calc((100vw - 960px - 140px) / 2 - 20px));
+    padding: 12px 0; font-size: 12px;
+  }
+  .anchor-nav .nav-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 8px; }
+  .anchor-nav a {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 8px; border-radius: 4px; margin-bottom: 1px;
+    color: var(--gray-500); text-decoration: none; font-size: 12px; line-height: 1.4;
+    transition: color 0.12s, background 0.12s;
+    border-left: 2px solid transparent;
+  }
+  .anchor-nav a:hover { color: var(--gray-900); background: var(--gray-100); border-left-color: var(--gray-300); }
+  .anchor-nav .dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .anchor-nav .dot.r { background: var(--red); }
+  .anchor-nav .dot.y { background: var(--yellow); }
+  .anchor-nav .dot.g { background: var(--green); }
+  .anchor-nav .spacer { height: 8px; }
+
+  /* Main content */
+  .container { max-width: 960px; flex: 1; min-width: 0; padding: 24px 24px 48px; }
+
+  /* ===== HEADER ===== */
+  .header { background: linear-gradient(135deg, #1E293B 0%, #334155 100%); color: white; padding: 28px 28px 20px; border-radius: 12px; margin-bottom: 28px; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+  .header .subtitle { font-size: 13px; color: #94A3B8; margin-bottom: 14px; }
+  .header .meta { display: flex; gap: 20px; font-size: 12px; color: #CBD5E1; flex-wrap: wrap; }
+  .header .signal-summary { display: flex; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .signal-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .signal-badge.red { background: rgba(220,38,38,0.2); color: #FCA5A5; }
+  .signal-badge.yellow { background: rgba(217,119,6,0.2); color: #FCD34D; }
+  .signal-badge.green { background: rgba(5,150,105,0.2); color: #6EE7B7; }
+
+  /* ===== SECTIONS ===== */
+  .section { margin-bottom: 32px; }
+  .section-header { display: flex; align-items: center; gap: 8px; padding: 10px 0; margin-bottom: 16px; border-bottom: 2px solid var(--gray-200); }
+  .section-header .icon { font-size: 18px; }
+  .section-header h2 { font-size: 16px; font-weight: 700; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .tag.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .tag.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .tag.green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag.gray { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); }
+  .tag.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+
+  /* ===== SIGNAL CARDS ===== */
+  .signal-card { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .signal-card.red { border-left: 4px solid var(--red); }
+  .signal-card.yellow { border-left: 4px solid var(--yellow); }
+  .signal-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+  .num { display: inline-block; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: white; margin-right: 6px; vertical-align: middle; }
+  .num.red { background: var(--red); }
+  .num.yellow { background: var(--yellow); }
+
+  .fact-label, .think-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .fact-label { color: var(--gray-500); }
+  .think-label { color: var(--blue); }
+  .fact-content { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; }
+  .fact-content ul { margin-left: 16px; }
+  .fact-content li { margin-bottom: 3px; }
+  .think-content { background: var(--blue-bg); padding: 12px 16px; border-radius: 8px; border: 1px solid var(--blue-border); font-size: 13px; color: var(--gray-700); }
+
+  /* source link style */
+  a.src { color: var(--blue); text-decoration: none; font-size: 11px; font-weight: 500; opacity: 0.7; margin-left: 3px; }
+  a.src:hover { opacity: 1; text-decoration: underline; }
+
+  /* ===== TABLES ===== */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  th { background: var(--gray-100); padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 2px solid var(--gray-200); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--gray-100); vertical-align: top; font-size: 12.5px; }
+  tr:hover { background: var(--gray-50); }
+  .highlight { background: #FEF3C7; }
+  .highlight td { font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .positive { color: var(--green); font-weight: 600; }
+  .muted { color: var(--gray-500); }
+
+  .card-wrap { background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 16px; }
+  .card-wrap table { margin: 0; }
+  .card-wrap .card-subtitle { padding: 10px 18px 6px; font-size: 11px; color: var(--gray-400); }
+  .source-note { font-size: 11px; color: var(--gray-400); padding: 6px 18px 14px; border-top: 1px solid var(--gray-100); }
+
+  /* ===== METRICS GRID ===== */
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .metric-card { background: white; border-radius: 8px; padding: 14px 16px; border: 1px solid var(--gray-200); }
+  .metric-card .label { font-size: 11px; color: var(--gray-500); font-weight: 500; }
+  .metric-card .value { font-size: 20px; font-weight: 700; margin: 2px 0; }
+  .metric-card .change { font-size: 12px; }
+  .metric-card .change.up { color: var(--green); }
+
+  .preview-box { background: white; border-radius: 10px; padding: 20px 24px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .preview-box ul { margin-left: 16px; font-size: 13px; color: var(--gray-700); }
+  .preview-box li { margin-bottom: 4px; }
+
+  .note { font-size: 12px; color: var(--gray-500); margin-bottom: 8px; padding: 0 2px; }
+  .disclaimer { text-align: center; font-size: 11px; color: var(--gray-500); margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 1100;
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    width: 0; border-radius: 0 2px 2px 0;
+    transition: width 0.08s linear;
+  }
+
+  /* ===== NAV ACTIVE STATE ===== */
+  .anchor-nav a.active {
+    color: var(--blue); background: var(--blue-bg);
+    border-left-color: var(--blue); font-weight: 600;
+  }
+
+  /* ===== CARD HOVER EFFECTS ===== */
+  .signal-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .signal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .card-wrap { transition: box-shadow 0.2s ease; }
+  .card-wrap:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .metric-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .metric-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .preview-box { transition: box-shadow 0.2s ease; }
+  .preview-box:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+
+  /* ===== SECTION FADE-IN ===== */
+  .section.anim { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .section.anim.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== BACK TO TOP ===== */
+  .back-to-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gray-900); color: white; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 20px; line-height: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  }
+  .back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { background: var(--blue); }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-nav-btn {
+    display: none; position: fixed; top: 12px; right: 12px; z-index: 1050;
+    width: 38px; height: 38px; border-radius: 10px;
+    background: white; border: 1px solid var(--gray-200);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--gray-700);
+    transition: background 0.2s;
+  }
+  .mobile-nav-btn:hover { background: var(--gray-50); }
+  .mobile-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1040;
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .mobile-overlay.open { display: block; }
+  .mobile-panel {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 1050;
+    width: 240px; background: white;
+    padding: 56px 14px 24px; overflow-y: auto;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+    transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .mobile-panel.open { transform: translateX(0); }
+  .mobile-panel .mob-title { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 10px; }
+  .mobile-panel a {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 12px; border-radius: 8px; margin-bottom: 2px;
+    color: var(--gray-600); text-decoration: none; font-size: 14px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .mobile-panel a:hover, .mobile-panel a.active { background: var(--blue-bg); color: var(--blue); }
+  .mobile-panel .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .mobile-panel .dot.r { background: var(--red); }
+  .mobile-panel .dot.y { background: var(--yellow); }
+  .mobile-panel .dot.g { background: var(--green); }
+  .mobile-panel .sep { height: 1px; background: var(--gray-100); margin: 8px 10px; }
+
+  /* ===== ENHANCED TABLE SCROLL ON MOBILE ===== */
+  .card-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* ===== HEADER BADGE ANIMATION ===== */
+  .signal-badge { transition: transform 0.2s ease; cursor: default; }
+  .signal-badge:hover { transform: scale(1.06); }
+
+  /* ===== SECTION HEADER STICKY ===== */
+  .section-header { position: sticky; top: 34px; z-index: 10; background: var(--gray-50); padding-top: 12px; padding-bottom: 10px; }
+
+  @media (max-width: 900px) {
+    .anchor-nav { display: none; }
+    .container { padding: 16px 14px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .mobile-nav-btn { display: flex; }
+    .header { padding: 20px 18px 16px; margin-bottom: 20px; border-radius: 10px; }
+    .header h1 { font-size: 18px; }
+    .signal-card { padding: 16px 18px; }
+    .section-header { padding-top: 10px; }
+    .back-to-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 18px; }
+  }
+  @media print {
+    .anchor-nav, .mobile-nav-btn, .back-to-top, .progress-bar { display: none !important; }
+    .signal-card, .card-wrap, .preview-box, .metric-card { break-inside: avoid; }
+    .section.anim { opacity: 1 !important; transform: none !important; }
+    .section-header { position: static; }
+  }
+  /* ===== ISSUE SWITCHER ===== */
+  .issue-switcher {
+    position: sticky; top: 0; z-index: 1200;
+    background: var(--gray-900); color: white;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 6px 16px; font-size: 12px;
+  }
+  .issue-switcher a {
+    color: #94A3B8; text-decoration: none; padding: 3px 10px; border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
+  .issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
+  .issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  @media (max-width: 900px) {
+    .issue-switcher { font-size: 11px; gap: 6px; padding: 5px 10px; }
+  }
+  @media print { .issue-switcher { display: none !important; } }
+</style>
+</head>
+<body>
+<div class="issue-switcher">
+  <span class="label">Issues</span>
+  <a href="001.html" class="active">#001 (03.01-04.03)</a>
+  <a href="002.html">#002 (04.01-04.07)</a>
+</div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- MOBILE NAV -->
+<button class="mobile-nav-btn" id="mobNavBtn" aria-label="Open navigation">&#9776;</button>
+<div class="mobile-overlay" id="mobOverlay"></div>
+<div class="mobile-panel" id="mobPanel">
+  <div class="mob-title">目錄</div>
+  <a href="#sec-red" class="mob-link"><span class="dot r"></span>紅色信號</a>
+  <a href="#sec-yellow" class="mob-link"><span class="dot y"></span>黃色信號</a>
+  <a href="#sec-green" class="mob-link"><span class="dot g"></span>綠色信號</a>
+  <div class="sep"></div>
+  <a href="#sec-appdata" class="mob-link">數據面板</a>
+  <a href="#sec-feature" class="mob-link">功能更新</a>
+  <a href="#sec-review" class="mob-link">用戶評論</a>
+  <a href="#sec-futu-review" class="mob-link">富途差評詳解</a>
+  <a href="#sec-keywords" class="mob-link">高頻詞</a>
+  <a href="#sec-social" class="mob-link">社媒聲量</a>
+  <a href="#sec-lihkg" class="mob-link">連登輿情</a>
+  <div class="sep"></div>
+  <a href="#sec-futu" class="mob-link">富途基線</a>
+  <a href="#sec-rates" class="mob-link">利率附錄</a>
+  <a href="#sec-preview" class="mob-link">下期預告</a>
+</div>
+
+<div class="page">
+
+<!-- LEFT ANCHOR NAV -->
+<nav class="anchor-nav">
+  <div class="nav-title">目錄</div>
+  <a href="#sec-red"><span class="dot r"></span>紅色信號</a>
+  <a href="#sec-yellow"><span class="dot y"></span>黃色信號</a>
+  <a href="#sec-green"><span class="dot g"></span>綠色信號</a>
+  <div class="spacer"></div>
+  <a href="#sec-appdata">數據面板</a>
+  <a href="#sec-feature">功能更新</a>
+  <a href="#sec-review">用戶評論</a>
+  <a href="#sec-futu-review">富途差評詳解</a>
+  <a href="#sec-keywords">高頻詞</a>
+  <a href="#sec-social">社媒聲量</a>
+  <a href="#sec-lihkg">連登輿情</a>
+  <div class="spacer"></div>
+  <a href="#sec-futu">富途基線</a>
+  <a href="#sec-rates">利率附錄</a>
+  <a href="#sec-preview">下期預告</a>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+
+<div class="header">
+  <h1>富途 HK 行業快報 #001</h1>
+  <div class="subtitle">統計周期：2026.03.01 — 04.03 | 基於周期內客觀事實 + 業務思考</div>
+  <div class="meta">
+    <span>競品範圍：11 家（線上券商 + VA 平台 + 傳統轉型）</span>
+    <span>數據源：SFC / HKMA / HKEX / App Store / Google Play / 公開財報</span>
+  </div>
+  <div class="signal-summary">
+    <span class="signal-badge red">2 紅色</span>
+    <span class="signal-badge yellow">6 黃色</span>
+    <span class="signal-badge green">9 綠色</span>
+  </div>
+</div>
+
+<!-- ==================== RED ==================== -->
+<div class="section" id="sec-red">
+  <div class="section-header"><span class="icon">🔴</span><h2>紅色信號</h2><span class="tag red">建議本周內討論</span></div>
+
+  <div class="signal-card red">
+    <h3><span class="num red">1</span>螞蟻正式完成收購耀才，董事會全換（3/30）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/16</strong>：螞蟻清除中國監管審批障礙，耀才股價單日暴漲 82% <a class="src" href="https://www.cnbc.com/2026/03/17/ant-group-bright-smart-securities-acquisition-hong-kong-brokerage.html" target="_blank">[CNBC]</a></li>
+        <li><strong>3/30</strong>：螞蟻以 HK$28.14 億正式完成收購耀才 50.55% 股份 <a class="src" href="https://www.caproasia.com/2026/04/01/alibaba-fintech-ant-group-completes-50-55-buyout-of-hong-kong-largest-retail-stock-brokerage-bright-smart-securities-announced-in-2025-april-for-362-2-million-hkd-2-81-billion-at-716-million-valua/" target="_blank">[Caproasia]</a></li>
+        <li><strong>董事會重組</strong>：鄭豔蘭（螞蟻財富海外負責人）任執行董事；黃浩、劉正、林志秋任非執行董事</li>
+        <li>創始人葉茂林全面退出</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      短期不構成直接威脅（整合需 12-18 月），但中長期格局改變——螞蟻帶來<strong>支付寶入口 + 支付閉環 + 內地客群觸達能力</strong>。耀才現有 12 萬+客戶 + 線下網絡是現成基礎。<br>
+      <strong>建議</strong>：將耀才 App 更新節奏和新客活動列為持續追蹤信號，作為螞蟻整合進度的領先指標。
+    </div>
+  </div>
+
+  <div class="signal-card red">
+    <h3><span class="num red">2</span>SFC 確認無紙證券制度（USM）11/16 強制上線（3/30）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/30</strong>：SFC 公布 Uncertificated Securities Market 制度定於 <strong>2026 年 11 月 16 日</strong>啟動 <a class="src" href="https://mondovisione.com/media-and-resources/news/hong-kong-securities-and-futures-commission-uncertificated-securities-market-re-2026330/" target="_blank">[SFC]</a></li>
+        <li>所有持牌券商必須在此日期前完成技術和運營準備</li>
+        <li>涵蓋登記、結算、託管全流程無紙化</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      硬性合規要求，無商量餘地。距上線僅剩 ~7 個月。<br>
+      <strong>需確認</strong>：富途的系統改造進度是否已排入 roadmap？是否有跨部門項目組？技術評估是否完成？
+    </div>
+  </div>
+</div>
+
+<!-- ==================== YELLOW ==================== -->
+<div class="section" id="sec-yellow">
+  <div class="section-header"><span class="icon">🟡</span><h2>黃色信號</h2><span class="tag yellow">本期需關注</span></div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">3</span>長橋連續差異化：全球首創盤前美股期權 + 券商 MCP（3/3）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/3</strong>：推出全球首創盤前美股期權交易 <a class="src" href="https://www.globenewswire.com/news-release/2026/03/03/3247959/0/en/Longbridge-Securities-Launches-the-World-s-First-Pre-Market-U-S-Options-Trading-Empowering-Investors-to-Overcome-Time-Zone-Barriers-and-Stay-Ahead-of-the-Market-Movement.html" target="_blank">[GlobeNewswire]</a></li>
+        <li>持續強化 AI-native 定位：PortAI 分析引擎 + 行業首個券商 MCP（Model Context Protocol）</li>
+        <li>總部搬遷至中環 IFC</li>
+        <li>2025 年客戶資產 +220% YoY，已實現盈利</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      策略清晰——不打價格戰，做功能差異化 + AI 深度整合。盤前期權是品類創新，非 me-too。<br>
+      <strong>但</strong>：App Store 有執行質量投訴（spread 偏大、限價單被取消），值得驗證其零佣模式是否靠 spread 回收。<br>
+      iOS 排名中長橋跌出 Free Top 100，但 Grossing 排 #45——變現能力強但拉新弱。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">4</span>uSMART 全面提速：12 門店 + 全免佣 Trader 賬戶 + 期貨牌照（3月）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li>一年內實體服務中心擴至 <strong>12 間</strong>（3 月新開大圍、屯門；啟德/旺角即將開業）<a class="src" href="https://www.tradingview.com/news/reuters.com,2026-03-13:newsml_ACN105609:0-usmart-hk-expands-to-12-physical-service-centres-in-one-year-accelerating-online-x-offline-o2o-community-finance-strategy/" target="_blank">[Reuters]</a></li>
+        <li>推出 Trader 賬戶：港股/美股/美股期權<strong>全免佣</strong></li>
+        <li>期貨牌照已獲批，預計年中上線（品類追平）</li>
+        <li>HK$7,400 新客禮包</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      O2O 打法對純線上券商是降維攻擊，在中老年/低信任客群有明確優勢。iOS Free 排名 #29，高於長橋。<br>
+      <strong>短板</strong>：App Store 反映功能差距（無槓桿 ETF 搜索、無盈虧報告、無港股期權）。拉新跑得快，留存有短板。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">5</span>HashKey 密集佈局 VA 基建：ETH Staking + 白銀 RWA（3月）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/26</strong>：ETH Staking 上線——香港首家持牌平台 <a class="src" href="https://group.hashkey.com/en/newsroom/hashkey-launches-eth-staking-service-enabling-investors-to-participate-in-ethereum-staking" target="_blank">[HashKey]</a></li>
+        <li><strong>3/24</strong>：推出香港首個受監管白銀 RWA 代幣 <a class="src" href="https://www.prnewswire.com/apac/news-releases/hashkey-chain-supports-the-on-chain-issuance-of-hong-kongs-first-regulated-silver-backed-rwa-tokens-302723077.html" target="_blank">[PRNewswire]</a></li>
+        <li>2/25：生態代幣 HSK 上線；2/24：RWA 一站式發行方案</li>
+        <li>App Store 評分偏低（iOS 3.61 / Google Play 3.2），用戶體驗是短板</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      HashKey 搶先卡位 VA 基建（Staking + RWA），但用戶體驗差距明顯。<br>
+      富途若佈局 VA，HashKey 的上線節奏是追趕基線，但其 App 評分（3.61）暗示體驗端有超越機會。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">6</span>盈透（IBKR）EEA 加密交易上線 + 單月新增 10.8 萬帳戶（3/31）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/31</strong>：IBKR 在歐洲經濟區（EEA）上線加密貨幣交易，覆蓋 11 幣種、4.5 億人口市場 <a class="src" href="https://www.stocktitan.net/news/IBKR/interactive-brokers-launches-crypto-asset-trading-for-individual-v68ayz1tnu7r.html" target="_blank">[StockTitan]</a></li>
+        <li><strong>4/1</strong>：公布 3 月數據——單月新增 10.8 萬帳戶（+25% YoY），客戶淨資產 US$7,890 億 <a class="src" href="https://www.businesswire.com/news/home/20260401989925/en/Interactive-Brokers-Group-Reports-Brokerage-Metrics-and-Other-Financial-Information-for-March-2026-includes-Reg.-NMS-Execution-Statistics" target="_blank">[BusinessWire]</a></li>
+        <li>IBKR 的全球加密佈局持續擴張，亞太下一站可能是 HK</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      IBKR 在 EEA 落地加密交易意味著其技術棧和合規框架已經成熟。若 IBKR 申請 HK VATP 牌照，將是最具威脅的跨界競爭者——自帶全球客戶基礎 + 極低融資利率 + 全品類覆蓋。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">7</span>OSL 年度業績：收入新高但虧損 HK$3.88 億，轉型穩定幣支付（3/31）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/31</strong>：OSL FY2025 收入創歷史新高，但淨虧損 HK$3.88 億 <a class="src" href="https://www.prnewswire.com/news-releases/osl-group-announces-2025-annual-results-record-high-revenue-with-strategic-transformation-to-a-global-stablecoin-payment-and-trading-platform-302730245.html" target="_blank">[PRNewswire]</a></li>
+        <li>宣布戰略轉型為「穩定幣支付平台」，與 COINPAYMENTS 達成合作</li>
+        <li>已入圍 HKMA 穩定幣牌照候選名單</li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      OSL 從純 VA 交易轉向穩定幣基建，反映了 VA 交易平台盈利之難。這對富途的 VA 佈局策略有參考意義——直接做交易可能不如做分銷/通道。
+    </div>
+  </div>
+
+  <div class="signal-card yellow">
+    <h3><span class="num yellow">8</span>SFC 推出 GenA.I. Sandbox++ + 勝利證券獲第 12 張 VATP 牌照（3月）</h3>
+    <div class="fact-label">客觀事實</div>
+    <div class="fact-content">
+      <ul>
+        <li><strong>3/5</strong>：SFC 推出 GenA.I. Sandbox++，券商可申請 AI 監管沙盒（截至 6/30），含免費 GPU 算力 <a class="src" href="https://www.info.gov.hk/gia/general/202603/05/P2026030500251.htm" target="_blank">[政府新聞處]</a></li>
+        <li><strong>2/13</strong>：勝利證券（VDX）獲 SFC 第 12 張 VATP 牌照 <a class="src" href="https://www.sfc.hk/en/Welcome-to-the-Fintech-Contact-Point/Virtual-assets/Virtual-asset-trading-platforms-operators/Lists-of-virtual-asset-trading-platforms" target="_blank">[SFC VATP]</a></li>
+        <li><strong>2/11</strong>：SFC 發布兩份通函，允許持牌 VATP 開展 BTC/ETH 保證金融資和做市 <a class="src" href="https://kpmg.com/cn/en/insights/2026/02/unlocking-liquidity.html" target="_blank">[KPMG]</a></li>
+      </ul>
+    </div>
+    <div class="think-label">業務思考</div>
+    <div class="think-content">
+      VA 監管持續放寬（保證金融資 + 新發牌 + AI 沙盒）。SFC 的信號明確：鼓勵持牌機構創新。<br>
+      GenA.I. Sandbox++ 值得關注——若富途計劃在 AI 投顧方向探索，這是獲取監管 cover 的窗口。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== GREEN ==================== -->
+<div class="section" id="sec-green">
+  <div class="section-header"><span class="icon">🟢</span><h2>綠色信號</h2><span class="tag green">知悉即可</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>#</th><th>日期</th><th>事實</th><th>一句話</th></tr></thead>
+      <tbody>
+        <tr><td>9</td><td>3/31</td><td>SFC 行業報告：2025 年券商淨利潤 HK$717 億（+62%），五年新高 <a class="src" href="https://apps.sfc.hk/edistributionWeb/gateway/EN/news-and-announcements/news/doc?refNo=26PR53" target="_blank">[SFC]</a></td><td>C 類券商利潤率 +77%，跑贏行業</td></tr>
+        <tr><td>10</td><td>3/19</td><td>SFC 季報：VA ETF 佔港股成交 14%，VA 交易佣金 YoY +84% <a class="src" href="https://www.sfc.hk/-/media/EN/files/COM/QR-Reports/202510-12/1---Oct-Dec-2025-QR---Eng---Highlights.pdf" target="_blank">[SFC PDF]</a></td><td>VA 品類滲透率持續提升</td></tr>
+        <tr><td>11</td><td>3/12</td><td>SFC-ICAC「熔斷行動」：8 名券商從業者因 HK$3.15 億內幕交易被捕 <a class="src" href="https://www.thestandard.com.hk/news/article/326489/Eight-arrested-in-ICACSFC-operation-over-insider-trading-scheme" target="_blank">[The Standard]</a></td><td>合規執法力度升級</td></tr>
+        <tr><td>12</td><td>3/19</td><td>老虎 FY2025：收入 US$6.12 億 (+56%)，淨利 US$1.71 億 (+181%) <a class="src" href="https://www.stocktitan.net/news/TIGR/up-fintech-holding-limited-reports-unaudited-fourth-quarter-and-full-ks7tc32vl748.html" target="_blank">[StockTitan]</a></td><td>港股交易量 +1,305%；2026 指引 15 萬帳戶</td></tr>
+        <tr><td>13</td><td>3/12</td><td>富途 FY2025：收入 HK$228 億 (+68%)，淨利 HK$113 億 (+108%) <a class="src" href="https://www.globenewswire.com/news-release/2026/03/12/3254320/0/en/Futu-Announces-Fourth-Quarter-and-Full-Year-2025-Unaudited-Financial-Results.html" target="_blank">[GlobeNewswire]</a></td><td>融資 book HK$677 億；2026 指引 80 萬帳戶</td></tr>
+        <tr><td>14</td><td>3月</td><td>穩定幣牌照：36 份申請但 3 月零發牌 <a class="src" href="https://www.coindesk.com/policy/2026/04/01/hong-kong-hasn-t-issued-a-single-hkd-stablecoin-license-after-march-target" target="_blank">[CoinDesk]</a></td><td>StanChart-Animoca、HSBC 為領跑者</td></tr>
+        <tr><td>15</td><td>4/1</td><td>Webull 英國去除美股+港股佣金、推 ISA 產品 <a class="src" href="https://ffnews.com/newsarticle/fintech/webull-uk-removes-commission-from-us-and-hk-shares-and-launches-flexible-stocks-and-shares-isa/" target="_blank">[FFNews]</a></td><td>「True ZERO Fees」全球標配化</td></tr>
+        <tr><td>16</td><td>3月初</td><td>Saxo Markets 被 J. Safra Sarasin 收購 71% 股份 <a class="src" href="https://portfolio-adviser.com/j-safra-sarasin-group-completes-71-acquisition-of-saxo-bank/" target="_blank">[Portfolio Adviser]</a></td><td>傳統券商整合加速</td></tr>
+        <tr><td>17</td><td>Q1</td><td>HKEX Q1 全球 IPO 募資額第一 ~HK$1,100 億 <a class="src" href="https://www.scmp.com/business/banking-finance/article/3348536/hong-kong-retains-global-ipo-crown-first-quarter-faces-us-mega-listings" target="_blank">[SCMP]</a></td><td>IPO 火熱 vs 二級市場震盪</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== APP STORE DATA ==================== -->
+<div class="section" id="sec-appdata">
+  <div class="section-header"><span class="icon">📊</span><h2>App Store 數據面板</h2><span class="tag purple">11 家競品</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>App</th><th>iOS 評分</th><th>iOS 評論數</th><th>GP 評分</th><th>GP 評論數</th><th>Free 排名</th><th>Grossing</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td><strong>4.69</strong></td><td><strong>96,847</strong></td><td>4.6</td><td>19,200</td><td class="positive"><strong>#4</strong></td><td class="positive"><strong>#2</strong></td></tr>
+        <tr><td>Tiger 老虎</td><td>4.76</td><td>3,371</td><td>4.4</td><td>11,100</td><td>#50</td><td>#48</td></tr>
+        <tr><td>Longbridge 長橋</td><td>4.68</td><td>1,563</td><td>4.3</td><td>678</td><td class="muted">>100</td><td>#45</td></tr>
+        <tr><td>uSMART 盈立</td><td>4.66</td><td>1,330</td><td>4.3</td><td>912</td><td>#29</td><td class="muted">>100</td></tr>
+        <tr><td>Webull 微牛</td><td>4.47</td><td>1,446</td><td>—</td><td>—</td><td>#58</td><td><strong>#23</strong></td></tr>
+        <tr><td>IBKR 盈透</td><td>4.4</td><td>2,400</td><td>4.6</td><td>64,500</td><td>#44</td><td class="muted">>100</td></tr>
+        <tr><td>HashKey</td><td class="negative">3.61</td><td>514</td><td class="negative">3.2</td><td>655</td><td>#73</td><td class="muted">>100</td></tr>
+        <tr><td>OSL</td><td>4.6</td><td>514</td><td>—</td><td>—</td><td>#84</td><td>—</td></tr>
+        <tr><td>耀才證券</td><td class="negative">3.0</td><td>753</td><td class="negative">2.1</td><td>921</td><td class="muted">>200</td><td>—</td></tr>
+        <tr><td>Saxo 盛寶</td><td>4.4</td><td>645</td><td>4.2</td><td>170</td><td class="muted">>200</td><td>—</td></tr>
+        <tr><td>Victory/VDX</td><td>4.3</td><td>32</td><td>—</td><td>—</td><td class="muted">>200</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：HK App Store / Google Play（截至 2026-04-03）| 排名：HK Finance 分類</div>
+  </div>
+</div>
+
+<!-- ==================== FEATURE UPDATES ==================== -->
+<div class="section" id="sec-feature">
+  <div class="section-header"><span class="icon">🔄</span><h2>3 月功能更新追蹤</h2><span class="tag purple">App Store + 官網</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>券商</th><th>頻率</th><th>App Store 核心更新</th><th>官方 / 社區動態</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td>4版/月</td><td>What's New 均為「修復已知問題」</td><td>3/4 Sensor Tower 最佳全球投資平台獎；Crypto 50+ 幣種迭代</td></tr>
+        <tr><td>Tiger</td><td>~2版/月</td><td><strong>港股紅利再投</strong>（HK 首次）；IPO 孖展透明化；盈虧排行聚合</td><td>Crypto 零佣上線（YAX VATP）；佣金降至 0.029%</td></tr>
+        <tr><td>長橋</td><td>2-3版/月</td><td>全新視覺設計；美股月供；網格交易升級；閒錢理財專區</td><td>PortAI + MCP 推進 AI-native；總部搬 IFC</td></tr>
+        <tr><td>uSMART</td><td>不明</td><td>What's New 空白；財經台啟播；AI 智選潛力股</td><td>Trader 賬戶；12 間門店；期貨牌照獲批</td></tr>
+        <tr><td>Webull</td><td>~2版/月</td><td>未公開具體功能</td><td>3/4 FY2025 財報（BULL）；UK ISA + 免佣港美股</td></tr>
+        <tr><td>IBKR</td><td>低頻</td><td>Options Wizard Protective Collar；API→手機確認</td><td>GlobalTrader 重設計（AI 新聞）；EEA Crypto</td></tr>
+        <tr><td>HashKey</td><td>不明</td><td>不可得</td><td><strong>3/26 ETH Staking</strong>（港首家持牌）；白銀 RWA</td></tr>
+        <tr><td>OSL</td><td>不明</td><td>不可得</td><td>USDGO + StableHub + BizPay；SoFi HK Crypto 整合</td></tr>
+        <tr><td>VDX</td><td>~2版/月</td><td><strong>持倉異動提醒</strong>；IPO AI 速評；AI 拍照查股；VA 定投</td><td>2/13 獲 VATP 牌照（第 12 家）</td></tr>
+        <tr><td>Saxo</td><td>低頻</td><td>3 月無重大功能發佈</td><td>J. Safra Sarasin 收購 71%，CEO 換人</td></tr>
+        <tr><td>耀才</td><td>不明</td><td>3 月無功能更新（收購過渡期）</td><td><strong>3/30 螞蟻完成收購</strong>；董事會全換</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：App Store / Google Play 版本歷史、各券商官網及新聞稿</div>
+  </div>
+</div>
+
+<!-- ==================== USER REVIEWS ==================== -->
+<div class="section" id="sec-review">
+  <div class="section-header"><span class="icon">💬</span><h2>3 月用戶評論分析</h2><span class="tag purple">差評 + 好評 + 高頻提及</span></div>
+  <div class="card-wrap">
+    <div class="card-subtitle">信源：HK App Store、Google Play 用戶評論；Trustpilot；discuss.com.hk 用戶討論（輔助參考）</div>
+    <table>
+      <thead><tr><th>App</th><th>差評焦點（1-2 星）</th><th>好評焦點（4-5 星）</th><th>本期高頻提及</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途牛牛</strong></td><td>連登功能缺失集中投訴（trailing stop、蟹貨隱藏）；隱藏成本博文傳播 <em>（詳見下方）</em></td><td>App 介面公認最優；免費行情 + AI 工具豐富；客服快 + 實體門市</td><td>連登「被用慣非推薦」共識；功能改進呼聲升溫</td></tr>
+        <tr><td>Tiger</td><td>無電話客服（排隊 10 分鐘）；更新後閃退；迎新條款繁複</td><td>IPO 零息零手續費 + 暗盤；開戶 3 分鐘；美股免佣</td><td>佣金降至 0.029%；Crypto 零佣上線</td></tr>
+        <tr><td>長橋</td><td>證券欺詐投訴（MGOL 反向拆股凍帳戶）；客服 3.5/5 分；無 A 股</td><td>終身零佣金（全港最低）；介面簡潔 + 社交功能；餘額通 ~5%</td><td>零佣持續吸引富途/老虎轉戶</td></tr>
+        <tr><td>uSMART</td><td>App 精細度差距；港股佣金非零；社區用戶基數小</td><td>AI 智能選股 + 網格交易；IPO 20 倍孖展（1.6%）；穩定快速</td><td>港資 No.1 自稱；門店擴張</td></tr>
+        <tr><td>Webull</td><td class="negative"><strong>期權功能殘缺</strong>（港版 vs 美版差距大）；行情延遲；iPad 適配差</td><td>雙零佣零平台費（全港最抵）；圖表專業級；免費 Lv2</td><td>期權 HK vs US 差距 Q1 最集中投訴</td></tr>
+        <tr><td>IBKR</td><td>介面複雜；出入金凍結（$84k 被鎖 44 天）；登入延遲</td><td>150+ 交易所全品類；TWS 專業工具；最低孖展 + 閒資 4.5%</td><td>Trustpilot 出入金問題 Q1 最高頻</td></tr>
+        <tr><td>HashKey</td><td>UI/UX 差 + 卡頓 + 頻繁重登入；幣種僅 50-80；提現困難</td><td>SFC 持牌合規；KYC 幾分鐘；法幣直接出入金</td><td>虧損 HK$10.8 億佔港 VA 75%</td></tr>
+        <tr><td>OSL</td><td>評論極少；可疑模板化 5 星；無 P&L</td><td>持牌合規；交易流暢</td><td>轉型穩定幣；SoFi 合作</td></tr>
+        <tr><td>耀才</td><td class="negative"><strong>墊底</strong>（3.0/2.1）；閃退；UI 過時；垃圾電話</td><td>歷史用戶基數大（GP 10 萬+）；線下網絡</td><td>螞蟻入主後 App 重建</td></tr>
+        <tr><td>Saxo</td><td colspan="3" class="muted">評論量不足（iOS 645 / GP 170），無法有效分析</td></tr>
+        <tr><td>VDX</td><td colspan="3" class="muted">評論量不足（iOS 32 條），無法有效分析</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FUTU DETAIL -->
+  <div class="card-wrap" id="sec-futu-review">
+    <div class="card-subtitle" style="font-weight:700; color:var(--gray-700); font-size:13px; padding-top:14px;">富途牛牛 3 月差評 + 高頻問題詳解</div>
+    <div class="card-subtitle">信源：LIHKG、公開博客 | 僅含 3 月統計周期內（2026.03.01-04.03）新發生或顯著升溫事件</div>
+
+    <table>
+      <thead><tr><th style="width:36px">P</th><th style="width:140px">問題</th><th>詳情</th><th style="width:90px">規模</th><th style="width:56px">信源</th><th style="width:260px">原文摘錄</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="background:var(--yellow);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P1</span></td>
+          <td><strong>LIHKG 3/26：功能缺失集中投訴</strong></td>
+          <td>連登帖「建議富途牛牛新增一個功能」引發討論，集中三類訴求：隱藏蟹貨、強制重登入、缺 Trailing Stop</td>
+          <td>連登 3/26<br>多人附議</td>
+          <td><a class="src" href="https://lihkg.com/thread/4085508" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4085508</div>
+            樓主：「可唔可以淨係<strong>隱藏單一股票</strong>⋯⋯唔想再比隻 penny stock 影響心情」<br><br>
+            回覆 1：「成日要 del app 再 download login 返好煩」（強制重登入）<br><br>
+            回覆 2：「點解冇 <strong>trailing stop</strong>？美股版有，港股版冇⋯⋯IB 乜都有」<br><br>
+            回覆 3：「富途啲功能越來越多但基本嘢做唔好」
+          </div></td>
+        </tr>
+        <tr>
+          <td><span style="background:var(--yellow);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P1</span></td>
+          <td><strong>LIHKG 共識：富途「被用慣」非「被推薦」</strong></td>
+          <td>3 月帖反映散戶心智——富途為默認工具但非首推。資深用戶更傾向 IB，富途依靠習慣留存</td>
+          <td>連登 3 月<br>活躍帖</td>
+          <td><a class="src" href="https://lihkg.com/thread/4079920/page/2" target="_blank">[LIHKG]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">LIHKG thread/4079920</div>
+            樓主：「<strong>有左牛牛 IB，其他邊幾間仲生存到？</strong>」<br><br>
+            高票回覆：「牛牛睇 chart 同港股用、IB 買美股同收息⋯⋯其他券商就係攞迎新然後放喺度」<br><br>
+            「老虎長橋 uSMART 用完迎新之後冇乜理由留低」<br><br>
+            「IB 入金用中銀免費匯款⋯⋯牛牛好處係啲 chart 靚同 app 流暢」
+          </div></td>
+        </tr>
+        <tr>
+          <td><span style="background:var(--gray-400);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;">P2</span></td>
+          <td><strong>博客「3 大隱藏成本」系列文章（3/15）</strong></td>
+          <td>3 月 SEO 博客密集發佈富途隱藏成本分析（平台費、匯率點差、滑點），面向內地客開 HK 戶群體</td>
+          <td>3/15 起<br>多篇連發</td>
+          <td><a class="src" href="https://forexdoc.net/futou-securities-2026-review-hidden-costs-analysis-tools/" target="_blank">[ForexDoc]</a></td>
+          <td><div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.5;color:var(--gray-700);">
+            <div style="font-weight:600;color:var(--gray-500);margin-bottom:3px;">ForexDoc「2026 實測」(15/03/2026)</div>
+            「富途證券'<strong>一世免佣</strong>'的背後，你忽略了什麼？」<br><br>
+            「平台費：港股每單 HK$15、美股每單 US$1⋯⋯匯率點差：港幣兌日元比同業高 <strong>100.14%</strong>，兌新幣高 84.12%」<br><br>
+            「超越手續費：交易員揭秘'滑點'與'流動性'的隱藏風險⋯⋯波動市實測平均滑點 ~0.12%（盈透僅 ~0.05%）」<br><br>
+            「<strong>零佣金可能是這個時代最昂貴的營銷口號</strong>」
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="padding:12px 18px 6px; font-size:12px; color:var(--gray-500); border-top:1px solid var(--gray-100);">
+      <strong>持續存在的結構性差評（非本期新增，基線參考）：</strong>
+    </div>
+    <table>
+      <thead><tr><th style="width:180px">長期問題</th><th>概要</th><th style="width:90px">競品對比</th></tr></thead>
+      <tbody>
+        <tr><td>港股 LV2 報價月費 HK$488</td><td>比同業均值 HK$309 高 57.93%；免費期結束後自動續費引不滿</td><td>長橋/Webull 免費</td></tr>
+        <tr><td>小額/DCA 最低消費 HK$18/單</td><td>佣金 $3 + 平台費 $15，月供 ETF 成本 vs IB US$0.35 差距 4.7 倍</td><td>IB 最優</td></tr>
+        <tr><td>牛牛圈信噪比低</td><td>UGC 門檻低致散戶建議充斥，「劣幣驅逐良幣」，不如雪球</td><td>長橋社區較精簡</td></tr>
+        <tr><td>SMS 釣魚詐騙</td><td>2025-06 警方報告 ~70 宗、損失 &gt;HK$2,000 萬；本期無新增重大事件，但風險持續存在</td><td class="muted">2025-06 首報</td></tr>
+        <tr><td>Trustpilot 全球 2.4/5</td><td>moomoo.com 全球口徑 238 條，出金延遲為最高頻投訴（以 US/AU 帳戶居多，非 HK 專屬）</td><td class="muted">全球口徑</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note" style="padding-top:10px;">
+      <strong>3 月觀察到的用戶轉向路徑：</strong>暗盤/IPO 費用 → 老虎 | 月供 DCA → IB | 港股零佣 → 長橋 | 大額資金安全 → IB
+    </div>
+  </div>
+</div>
+
+<!-- ==================== KEYWORDS ==================== -->
+<div class="section" id="sec-keywords">
+  <div class="section-header"><span class="icon">🏷</span><h2>跨 App 高頻關鍵詞</h2><span class="tag gray">聚合分析</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th style="width:70px">維度</th><th>高頻關鍵詞</th><th>涉及 App</th></tr></thead>
+      <tbody>
+        <tr><td class="negative">差評</td><td>佣金 / 隱性費用</td><td>富途、Tiger、uSMART、Webull</td></tr>
+        <tr><td class="negative">差評</td><td>客服慢 / 無電話</td><td>Tiger、IBKR、Webull</td></tr>
+        <tr><td class="negative">差評</td><td>App 閃退 / 行情延遲</td><td>Tiger、Webull、HashKey、耀才</td></tr>
+        <tr><td class="negative">差評</td><td>出入金障礙 / 資金凍結</td><td>IBKR、HashKey、Webull</td></tr>
+        <tr><td class="negative">差評</td><td>功能 HK 版殘缺 vs 海外版</td><td>Webull（期權）</td></tr>
+        <tr><td class="positive">好評</td><td>零佣金 / 低費用</td><td>長橋、Webull、Tiger</td></tr>
+        <tr><td class="positive">好評</td><td>App 介面流暢好用</td><td>富途、長橋、uSMART</td></tr>
+        <tr><td class="positive">好評</td><td>IPO 打新 / 暗盤</td><td>Tiger、富途、uSMART</td></tr>
+        <tr><td class="positive">好評</td><td>AI 工具 / 智能選股</td><td>富途、uSMART、Tiger</td></tr>
+        <tr><td class="positive">好評</td><td>持牌合規安全</td><td>HashKey、OSL、全部</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：HK App Store、Google Play 用戶評論；Trustpilot；discuss.com.hk 用戶討論（輔助參考）</div>
+  </div>
+</div>
+
+<!-- ==================== SOCIAL MEDIA ==================== -->
+<div class="section" id="sec-social">
+  <div class="section-header"><span class="icon">📱</span><h2>社媒聲量掃描</h2><span class="tag purple">官方帳號 + 用戶提及</span></div>
+
+  <div class="card-wrap">
+    <div class="card-subtitle">官方社媒矩陣（3 月活躍度）</div>
+    <table>
+      <thead><tr><th>券商</th><th>主力平台</th><th>核心指標</th><th>內容策略</th><th>活躍度</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>富途/moomoo</strong></td><td>IG / LinkedIn / YouTube</td><td>IG 38K；LinkedIn 43.5K</td><td>全平台日更；Expo 線下聯動；社區 UGC</td><td class="positive">A</td></tr>
+        <tr><td>HashKey</td><td>X / Telegram</td><td>X <strong>73.7K</strong>（11家最多）；TG <strong>76.4K</strong></td><td>Crypto 原生社群運營；空投+任務驅動</td><td class="positive">A-</td></tr>
+        <tr><td>OSL</td><td>LinkedIn</td><td>LinkedIn <strong>70K</strong></td><td>機構向 Research Brief；品牌 PR</td><td>B+</td></tr>
+        <tr><td>Tiger/老虎</td><td>IG / YouTube</td><td>HK FB 僅 1.9K</td><td>電車車身廣告（金鐘）；KOL 合作；IPO 內容</td><td>B</td></tr>
+        <tr><td>長橋</td><td>小紅書 / KOL</td><td>小紅書 11K+ reels</td><td>KOL 合作密度最高；自有帳號中等</td><td>B-</td></tr>
+        <tr><td>uSMART</td><td>YouTube</td><td>自營財經台日播</td><td>唯一日播直播券商；門店地推</td><td>C+</td></tr>
+        <tr><td>耀才</td><td>FB</td><td>傳統直播</td><td>投資高峰會聯辦；螞蟻收購後待觀察</td><td>C</td></tr>
+        <tr><td>Webull</td><td>—</td><td>HK 社交幾近空白</td><td>全球統一帳號；HK 本地化不足</td><td>D+</td></tr>
+        <tr><td>IBKR</td><td>全球統一</td><td>無 HK 獨立帳號</td><td>Quant Blog + 教育內容</td><td>D+</td></tr>
+        <tr><td>Saxo</td><td>全球統一</td><td>無 HK 獨立帳號</td><td>市場分析</td><td>D</td></tr>
+        <tr><td>VDX</td><td>—</td><td>社交幾乎不存在</td><td>—</td><td>D</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：各平台公開主頁（截至 2026-04-03）</div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card-subtitle">用戶自然提及熱度（非官方內容）</div>
+    <table>
+      <thead><tr><th>平台</th><th>主導券商</th><th>情緒</th><th>關鍵信號</th></tr></thead>
+      <tbody>
+        <tr><td><strong>LIHKG 連登</strong></td><td>IB（資深）&gt; 富途（散戶）</td><td>理性偏批判</td><td>IB 帖已 19 集；富途=默認但「用慣非推薦」；迎新券商無人討論</td></tr>
+        <tr><td><strong>小紅書</strong></td><td>富途 &gt; 長橋 &gt; Tiger</td><td>比較導向</td><td>「免佣是陷阱？3 大隱藏成本」爆款；內地客開 HK 戶需求驅動</td></tr>
+        <tr><td><strong>Twitter/X</strong></td><td>富途（$FUTU cashtag）&gt; Tiger</td><td>正面偏投資</td><td>Q4 業績 + 機構建倉消息驅動；Tiger 6 連雙超預期</td></tr>
+        <tr><td><strong>YouTube</strong></td><td>富途 &gt; Tiger &gt; uSMART</td><td>比較/評測</td><td>KOL 評測以 affiliate 為主（TalkMoney/蛋黃視野）；uSMART 自營財經台獨特</td></tr>
+        <tr><td><strong>Instagram</strong></td><td>Tiger（電車廣告）</td><td>正面</td><td>金鐘電車車身廣告被拍照分享；KOL @lisumlingg 合作</td></tr>
+        <tr><td><strong>Reddit</strong></td><td>Tiger vs moomoo</td><td>中性</td><td>SG/APAC 視角為主，非 HK focused</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：LIHKG、小紅書、Twitter/X、YouTube、Instagram、Reddit 公開內容</div>
+  </div>
+</div>
+
+<!-- ==================== LIHKG ==================== -->
+<div class="section" id="sec-lihkg">
+  <div class="section-header"><span class="icon">💬</span><h2>連登券商輿情</h2><span class="tag purple">LIHKG 3 月熱帖</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>帖文</th><th>日期</th><th>核心觀點</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://lihkg.com/thread/4080934" target="_blank">發改委「開綠燈」允螞蟻入股耀才</a></td><td>3/16</td><td>「sell on news」最高票；投機心態為主，無人期待耀才 App 升級</td></tr>
+        <tr><td><a href="https://lihkg.com/thread/4081045" target="_blank">螞蟻要約收購已獲批准</a></td><td>3/16</td><td>「毛記都升 4 倍，耀才照跟升到 40 蚊得嗎」——股價幻想</td></tr>
+        <tr><td><a href="https://lihkg.com/thread/4085508" target="_blank">建議富途牛牛新增一個功能</a></td><td>3/26</td><td>要求隱藏單一蟹貨股票；強制重登入投訴；缺 trailing stop</td></tr>
+        <tr><td><a href="https://lihkg.com/thread/4079920/page/2" target="_blank">有左牛牛 IB，其他邊幾間仲生存到？</a></td><td>3月</td><td>共識：IB（美股）+ 富途（港股/圖表）= 雙核心；其他券商僅用於迎新薅羊毛</td></tr>
+        <tr><td>IB 用家討論區（第 19 集）</td><td>長駐<br><span class="muted">3月活躍</span></td><td>22 頁+；BOC 免費匯款消息 90 正評爆帖</td></tr>
+        <tr><td>Bitcoin/Crypto 集中討論（576 集）</td><td>長駐<br><span class="muted">3月活躍</span></td><td>HashKey 低頻提及；HSK 暴跌 60-90% 被稱「最坑平台幣」；「連 stop loss 都冇得 set」</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：LIHKG 財經台公開帖文</div>
+  </div>
+
+  <div class="signal-card yellow" style="border-left-color: var(--purple);">
+    <h3 style="font-size:14px;">連登產品啟示（PM 視角）</h3>
+    <div class="think-content">
+      <ul style="font-size:13px; margin-left:16px;">
+        <li><strong>IB 無迎新照稱王</strong>：連登用戶重工具專業性 &gt; 迎新優惠 &gt; 品牌。說明資深用戶的忠誠度靠產品力而非營銷</li>
+        <li><strong>富途「被用慣」而非「被推薦」</strong>：功能改進空間（trailing stop、蟹貨隱藏、登入穩定性）是差異化機會</li>
+        <li><strong>迎新券商打不入話語圈</strong>：uSMART HK$7,600 迎新在連登零討論；長橋/VDX 同樣無存在感</li>
+        <li><strong>老虎 IPO 內容策略有效</strong>：回撥新制分析報告被多家媒體轉引，精準命中打新用戶圈層</li>
+        <li><strong>HashKey 合規唯一賣點不夠</strong>：手續費 + 功能缺失（無 stop loss）雙重差評，HSK 代幣信譽受損</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FUTU BASELINE ==================== -->
+<div class="section" id="sec-futu">
+  <div class="section-header"><span class="icon">📈</span><h2>富途 FY2025 業績基線</h2><span class="tag gray">3/12 公布</span></div>
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="label">收入</div><div class="value">228 億</div><div class="change up">+68% YoY</div></div>
+    <div class="metric-card"><div class="label">淨利潤</div><div class="value">113 億</div><div class="change up">+108% YoY</div></div>
+    <div class="metric-card"><div class="label">入金客戶</div><div class="value">337 萬</div><div class="change up">+40% YoY</div></div>
+    <div class="metric-card"><div class="label">客戶資產</div><div class="value">1.23 萬億</div><div class="change up">+66% YoY</div></div>
+    <div class="metric-card"><div class="label">融資 Book</div><div class="value">677 億</div><div class="change up">+33% YoY</div></div>
+    <div class="metric-card"><div class="label">利息收入</div><div class="value">104 億</div><div class="change up">+57% YoY</div></div>
+    <div class="metric-card"><div class="label">淨利率</div><div class="value">49.5%</div><div class="change" style="color:var(--gray-500)">—</div></div>
+    <div class="metric-card"><div class="label">2026 指引</div><div class="value">80 萬</div><div class="change" style="color:var(--gray-500)">新入金客戶</div></div>
+  </div>
+</div>
+
+<!-- ==================== RATES ==================== -->
+<div class="section" id="sec-rates">
+  <div class="section-header"><span class="icon">📎</span><h2>附錄：融資利率基線</h2><span class="tag gray">本期無變動</span></div>
+  <div class="card-wrap">
+    <table>
+      <thead><tr><th>券商</th><th>港股孖展</th><th>美股孖展</th><th>vs 富途利差</th></tr></thead>
+      <tbody>
+        <tr><td>Webull</td><td><strong>5.70%</strong></td><td><strong>4.75%</strong></td><td class="negative">-110bps / -5bps</td></tr>
+        <tr><td>長橋</td><td>5.75%</td><td>—</td><td class="negative">-105bps</td></tr>
+        <tr><td><strong>富途牛牛</strong></td><td>6.80%</td><td>4.80%</td><td>基準</td></tr>
+        <tr><td>老虎</td><td>6.80%</td><td>4.80%</td><td>持平</td></tr>
+        <tr><td>uSMART</td><td>7.98%</td><td>6.98%</td><td class="positive">+118bps</td></tr>
+      </tbody>
+    </table>
+    <div class="source-note">信源：各券商官網費率頁（截至 2026-04-03）</div>
+  </div>
+</div>
+
+<!-- ==================== PREVIEW ==================== -->
+<div class="section" id="sec-preview">
+  <div class="section-header"><span class="icon">🔭</span><h2>下期預告</h2><span class="tag gray">4/4 — 4/18</span></div>
+  <div class="preview-box">
+    <ul>
+      <li><strong>HKMA 穩定幣牌照</strong>：可能有首批發牌（HSBC、StanChart-Animoca 為領跑者）</li>
+      <li><strong>耀才</strong>：螞蟻入主後首份公告/業務更新</li>
+      <li><strong>USM 制度</strong>：實施細則可能進一步公布</li>
+      <li><strong>SFC GenA.I. Sandbox++</strong>：持續接受申請（截至 6/30）</li>
+      <li><strong>港交所 3 月市場數據</strong>發布（ADT、市佔率）</li>
+      <li><strong>各家 App 更新</strong>：Q2 功能迭代高峰期</li>
+    </ul>
+  </div>
+</div>
+
+<div class="disclaimer">
+  試刊 #001 | 統計周期 2026.03.01 — 04.03 | 信號分級基於周期內公開信息<br>
+  業務影響評估為 PM 視角初判，建議結合內部數據交叉驗證後做行動決策
+</div>
+
+</div><!-- /container -->
+</div><!-- /page -->
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+
+<script>
+(function(){
+  // --- Progress bar ---
+  var bar = document.getElementById('progressBar');
+  function updateProgress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+  }
+
+  // --- Back to top ---
+  var btt = document.getElementById('backToTop');
+  function updateBtt(){
+    btt.classList.toggle('show', window.scrollY > 400);
+  }
+  btt.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  // --- Scroll spy ---
+  var navLinks = document.querySelectorAll('.anchor-nav a');
+  var mobLinks = document.querySelectorAll('.mob-link');
+  var sections = [];
+  navLinks.forEach(function(a){
+    var id = a.getAttribute('href');
+    if(id && id.startsWith('#')){
+      var el = document.querySelector(id);
+      if(el) sections.push({id: id, el: el});
+    }
+  });
+
+  function updateSpy(){
+    var current = '';
+    var offset = 80;
+    for(var i = sections.length - 1; i >= 0; i--){
+      if(sections[i].el.getBoundingClientRect().top <= offset){
+        current = sections[i].id;
+        break;
+      }
+    }
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === current);
+    });
+    mobLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === current);
+    });
+  }
+
+  // Throttled scroll handler
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        updateProgress();
+        updateBtt();
+        updateSpy();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, {passive: true});
+  updateProgress(); updateBtt(); updateSpy();
+
+  // --- Section fade-in ---
+  var allSections = document.querySelectorAll('.section');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, {rootMargin: '0px 0px -60px 0px', threshold: 0.05});
+    allSections.forEach(function(s){
+      if(s.getBoundingClientRect().top > window.innerHeight){
+        s.classList.add('anim');
+        obs.observe(s);
+      }
+    });
+  }
+
+  // --- Mobile nav ---
+  var mobBtn = document.getElementById('mobNavBtn');
+  var mobOverlay = document.getElementById('mobOverlay');
+  var mobPanel = document.getElementById('mobPanel');
+  function openMob(){ mobOverlay.classList.add('open'); mobPanel.classList.add('open'); mobBtn.innerHTML = '&#10005;'; }
+  function closeMob(){ mobOverlay.classList.remove('open'); mobPanel.classList.remove('open'); mobBtn.innerHTML = '&#9776;'; }
+  mobBtn.addEventListener('click', function(){
+    mobPanel.classList.contains('open') ? closeMob() : openMob();
+  });
+  mobOverlay.addEventListener('click', closeMob);
+  mobLinks.forEach(function(a){
+    a.addEventListener('click', function(){ closeMob(); });
+  });
+})();
+</script>
+</body>
+</html>

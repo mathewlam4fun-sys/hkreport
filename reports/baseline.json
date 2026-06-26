@@ -1,0 +1,129 @@
+{
+  "issue": 7,
+  "period": "2026.06.03-06.23",
+  "prev_period": "2026.05.26-06.02",
+  "mode": "full",
+  "fy_metrics": {
+    "q1_revenue": "HK$59億",
+    "q1_non_gaap_profit": "HK$30.1億",
+    "q1_gaap_profit": "HK$8.31億 (含CSRC罰款)",
+    "funded_clients": "359萬",
+    "client_assets": "HK$1.22萬億",
+    "trading_volume": "HK$4.15萬億",
+    "overseas_ratio": ">55%",
+    "fy_guidance": "80萬新入金帳戶 (CSRC後或下調)",
+    "csrc_penalty": "RMB 18.5億 (一次性)",
+    "ipo_retail_share": "24.4% 人數 / ~50% 金額"
+  },
+  "rates": {
+    "webull_hk": "5.70%",
+    "webull_us": "4.75%",
+    "longbridge_hk": "5.75%",
+    "futu_hk": "6.80%",
+    "futu_us": "4.80%",
+    "tiger_hk": "6.80%",
+    "tiger_us": "4.80%",
+    "ibkr_hk": "7.08%",
+    "ibkr_us": "6.83%",
+    "last_change": "無變動 (同 #005-006)"
+  },
+  "appstore_ids_corrected": {
+    "futu": "592031984",
+    "tiger": "1023600494",
+    "longbridge": "1470042146",
+    "webull": "1557435421",
+    "valuable": "1151370929",
+    "hsbc": "1164066737",
+    "bochk": "1534534188",
+    "bright_smart_baobao": "1449459489",
+    "za_bank": "1477150600",
+    "mox": "1505743481",
+    "ibkr": "454558592",
+    "okx": "1327268470",
+    "binance": "1436799971"
+  },
+  "unresolved_signals": [
+    {
+      "id": "R1",
+      "title": "CSRC 內地客戶買入封禁正式落地 (富途/Tiger/長橋 06-12)",
+      "severity": "RED",
+      "status": "active_escalated",
+      "first_reported": "#006",
+      "next_check": "HK 月度入金/出金實際數據；兩年整改細則官方稿；ADR 維穩進度；Q2 業績披露 HK + 海外是否補大陸缺口"
+    },
+    {
+      "id": "Y2",
+      "title": "LIHKG 富途擠提/IB遷移情緒持續",
+      "severity": "YELLOW",
+      "status": "monitoring",
+      "first_reported": "#006",
+      "next_check": "出金規模 vs 4 月基線；情緒是否轉成實際擠提；CEO/合規短片是否推出"
+    },
+    {
+      "id": "Y3",
+      "title": "HashKey 列 SKY + 加入 HKMA 代幣化債券專家組",
+      "severity": "YELLOW",
+      "status": "monitoring",
+      "first_reported": "#006",
+      "next_check": "SFC VA Advisory Q3 咨詢稿；富途 VATP 申請評估結論"
+    },
+    {
+      "id": "Y4",
+      "title": "USM 確認 2026-11-16 啟動",
+      "severity": "YELLOW",
+      "status": "active_escalated",
+      "first_reported": "#001",
+      "next_check": "8/31 內部測試問卷反饋；HKEX 行業準備度；富途 USM 改造里程碑 (CCASS/IPO 接口)"
+    },
+    {
+      "id": "Y5",
+      "title": "螞蟻/耀才整合 + 寶寶 App 3.0★ 口碑挑戰",
+      "severity": "YELLOW",
+      "status": "monitoring",
+      "first_reported": "#001",
+      "next_check": "AlipayHK 投資入口擴散；寶寶 App 是否緊急修補；螞蟻整合 PM 招聘進展"
+    },
+    {
+      "id": "Y6",
+      "title": "Mox+ 推出 + Mox Invest 新股認購 (06-23)",
+      "severity": "YELLOW",
+      "status": "active_new",
+      "first_reported": "#007",
+      "next_check": "Mox+ 付費滲透率；IPO 認購活躍度；ZA Bank 是否跟進類似會員體系；渣打集團是否導入更多通道"
+    }
+  ],
+  "baseline_issues": [
+    { "issue": "港股 LV2 報價月費 HK$488", "first_reported": "#001", "status": "持續存在" },
+    { "issue": "小額/DCA 最低消費 HK$18/單", "first_reported": "#001", "status": "持續存在" },
+    { "issue": "牛牛圈信噪比低", "first_reported": "#001", "status": "持續存在" },
+    { "issue": "SMS 釣魚詐騙", "first_reported": "2025-06", "status": "持續存在" },
+    { "issue": "匯率點差（非美元）vs IB", "first_reported": "#001", "status": "持續存在" },
+    { "issue": "CSRC 大陸業務 ~20% 收入結構性流失", "first_reported": "#006", "status": "2年整改期 + 06-12 買入封禁落地" }
+  ],
+  "new_this_issue": [
+    "CSRC 內地客戶買入封禁落地 (06-12)",
+    "HashKey 列 SKY + 加入 HKMA 代幣化債券專家組 (06-05, 06-12)",
+    "USM 啟動日鎖定 2026-11-16 (HKEX FAQ v3.0, 06-03)",
+    "耀才寶寶 App iOS 評分跌至 3.0★",
+    "Mox+ 高端會員 + Mox Invest 新股認購 (06-23)",
+    "Tiger v9.5.8.1 期權組合策略+期貨頻道 (06-20)",
+    "Longbridge v4.73.1 美股 IPO 競價 (06-12)",
+    "富途 6 月 SpaceX Pre-IPO 迎新活動"
+  ],
+  "appstore_snapshot": {
+    "date": "2026-06-23",
+    "futu": { "rating": 4.69, "reviews": 99400 },
+    "tiger": { "rating": 4.75, "reviews": 3680 },
+    "longbridge": { "rating": 4.69, "reviews": 1680 },
+    "webull": { "rating": 4.46, "reviews": 1610 },
+    "valuable": { "rating": 4.10, "reviews": 715 },
+    "hsbc": { "rating": 4.72, "reviews": 369500 },
+    "bochk": { "rating": 4.74, "reviews": 231800 },
+    "bright_smart_baobao": { "rating": 3.0, "reviews": 50 },
+    "za_bank": { "rating": 4.76, "reviews": 58800 },
+    "mox": { "rating": 4.77, "reviews": 89000 },
+    "ibkr": { "rating": 4.5, "reviews": 6400 },
+    "okx": { "rating": 4.75, "reviews": 9050 },
+    "binance": { "rating": 4.85, "reviews": 69400 }
+  }
+}
