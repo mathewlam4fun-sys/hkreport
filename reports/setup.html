@@ -166,71 +166,76 @@
 <div class="container">
 
   <div class="hero">
-    <div class="eyebrow">Self-Host Guide</div>
-    <h1>想為你的團隊跑一份這樣的競品快報？</h1>
-    <p>整套服務已封裝為 GitHub repo，全程由 Claude Code 引導安裝。預備 5 分鐘 + 安裝 30 分鐘，你會擁有自己的 <code style="color:#93C5FD;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:3px;font-size:13px;">*.surge.sh</code> 站點，每雙週自動更新。</p>
+    <div class="eyebrow">內部分享 · 同事可自助</div>
+    <h1>用 AI 幫你每兩週自動生成一份競品快報</h1>
+    <p>裝好一次就不用再管。每兩週週五早上，AI 會自動抓資料、寫報告、發到你自己的網址。<strong style="color:white;">整個安裝由 AI 助手對話完成，不用寫一行程式碼。</strong></p>
     <div class="stats">
-      <span><strong>~30 分鐘</strong> &nbsp;安裝</span>
-      <span><strong>US$0.3–0.5</strong> &nbsp;每期 API 成本</span>
-      <span><strong>密鑰不出機器</strong> &nbsp;本機 launchd</span>
+      <span><strong>30 分鐘</strong> &nbsp;安裝一次</span>
+      <span><strong>不用寫程式</strong> &nbsp;AI 對話搞定</span>
+      <span><strong>每期約 US$0.4</strong> &nbsp;公司金鑰可報銷</span>
     </div>
+  </div>
+
+  <!-- ===== PREVIEW ===== -->
+  <div class="callout" style="background:var(--blue-bg);border-color:var(--blue-border);margin-bottom:32px;">
+    <span class="ico">👀</span>
+    <span><strong>先看看做出來會長什麼樣？</strong> 點 <a href="index.html" style="color:var(--blue);text-decoration:none;font-weight:600;">最新一期</a>（或頂部 switcher 任何一期）就是你會擁有的網站樣式，只是內容會換成你關心的競品。</span>
   </div>
 
   <!-- ===== STEP 1: PREP ===== -->
   <section>
-    <h2><span class="num">1</span>事前準備（5 分鐘）</h2>
-    <p>下列 4 樣東西安裝過程會用到，建議先準備齊：</p>
+    <h2><span class="num">1</span>事前準備（10 分鐘）</h2>
+    <p>下面 4 樣東西先備齊，安裝過程逐項貼給 AI 即可：</p>
 
     <ol class="steps">
       <li>
-        <strong>公司 AI 平台 user-key</strong>
-        <div class="desc">飛書 → AI 中台 → 個人頭像 → 密鑰管理 → 複製密鑰（<code>user-key-...</code> 開頭）。本服務跑在你自己 Mac 上、走公司代理，符合 key 不出機器的政策。</div>
+        <strong>Mac + AI 助手 Claude Code</strong>
+        <div class="desc">macOS 任何近年版本都可以。沒裝過 Claude Code 的話到 <a href="https://claude.com/claude-code" target="_blank">claude.com/claude-code</a> 免費下載（5 分鐘）— 它是 Anthropic 出的桌面 AI 助手，整個安裝過程靠它對話完成。</div>
       </li>
       <li>
-        <strong>Tavily API key</strong>（新聞 / 社媒搜尋）
-        <div class="desc">到 <a href="https://app.tavily.com" target="_blank">app.tavily.com</a> 免費註冊，複製 <code>tvly-...</code> 開頭的 key。每月 1000 次查詢，足夠用。</div>
+        <strong>公司 AI 中台金鑰</strong>
+        <div class="desc">飛書 → AI 中台 → 個人頭像 → 密鑰管理 → 複製密鑰（<code>user-key-...</code> 開頭）。這把金鑰用來讓服務調用 AI 寫報告。</div>
       </li>
       <li>
-        <strong>Firecrawl API key</strong>（網頁 JS 渲染抓取）
-        <div class="desc">到 <a href="https://firecrawl.dev" target="_blank">firecrawl.dev</a> 免費註冊，複製 <code>fc-...</code> 開頭的 key。</div>
+        <strong>兩個免費註冊金鑰</strong>
+        <div class="desc">① 到 <a href="https://app.tavily.com" target="_blank">app.tavily.com</a> 註冊，複製 <code>tvly-...</code> 開頭那行（讓 AI 上網搜新聞）。<br>② 到 <a href="https://firecrawl.dev" target="_blank">firecrawl.dev</a> 註冊，複製 <code>fc-...</code> 開頭那行（讓 AI 抓網頁內容）。各 30 秒。</div>
       </li>
       <li>
-        <strong>想好你的 Surge 域名</strong>
-        <div class="desc">例如 <code>yourname-report.surge.sh</code>，任何 <code>*.surge.sh</code> 都可，先到先得。Surge 帳號安裝過程會引導你註冊。</div>
+        <strong>想好你的網址</strong>
+        <div class="desc">例如 <code>mary-report.surge.sh</code>，可用名字、團隊名、產品線都行。免費、先到先得，AI 會幫你註冊。</div>
       </li>
     </ol>
   </section>
 
   <!-- ===== STEP 2: INSTALL ===== -->
   <section>
-    <h2><span class="num">2</span>一句話安裝</h2>
-    <p>打開 Claude Code 對話框，把下面這行原話貼進去：</p>
+    <h2><span class="num">2</span>一句話啟動安裝</h2>
+    <p>打開 Claude Code，把下面這行原話貼進對話框，按 Enter — 之後就跟著 AI 對話即可。</p>
 
     <div class="install-box">
-      <div class="label">Claude Code 安裝指令</div>
+      <div class="label">貼給 Claude Code 的話</div>
       <div class="code-wrap">
         <pre class="code" id="installCmd">幫我從 https://github.com/mathewlam4fun-sys/hkreport 拉取並按 HANDOFF-CLAUDE.md 安裝到我的 Mac</pre>
         <button class="copy-btn" id="copyBtn" onclick="copyInstall()">複製</button>
       </div>
-      <div class="hint">Claude 會主動逐項問你密鑰、域名、排期，跟著答即可。預檢、寫 env、建 venv、註冊 launchd、kickstart 驗證全自動完成。</div>
+      <div class="hint">AI 會主動逐項問你 4 個金鑰、網址、發報時間，你貼上 / 回答即可。所有技術步驟 AI 全包 — 你不用懂程式碼、不用開 terminal、不用做任何手動設定。</div>
     </div>
   </section>
 
   <!-- ===== STEP 3: VERIFY ===== -->
   <section>
-    <h2><span class="num">3</span>試跑一次驗證</h2>
-    <p>安裝結束後，Claude 會問你要不要花約 <strong>US$0.5</strong> 試跑一次完整 pipeline，建議跑一次：</p>
+    <h2><span class="num">3</span>試跑一次看效果</h2>
+    <p>裝完後 AI 會問你「要不要花約 <strong>US$0.5</strong> 試跑一次驗證？」— 強烈建議跑一次。等 5-10 分鐘，你的網址就會出現你的第一期報告。</p>
 
     <div class="card">
-      <h3>看到這兩個訊號就代表成功</h3>
-      <p>① 你的 Surge 域名打開後出現 <code>富途 HK 行業快報 #001</code><br>
-      ② <code>~/Library/Logs/hkreport.log</code> 結尾顯示 <code>DEPLOY OK</code></p>
-      <div class="meta">之後每 14 天，週五 09:00（默認排期，可改）launchd 會自動跑下一期。Mac 關機錯過會在開機後補跑。</div>
+      <h3>之後你完全不用做任何事</h3>
+      <p>每兩週週五早上 09:00（時間可自訂）你的 Mac 會自動跑下一期。Mac 關機 / 睡眠沒關係 — 開機後會自動補跑。</p>
+      <div class="meta">每兩週去網站看當期內容即可。新內容上線時不會打擾你（沒有彈窗、沒有通知）。</div>
     </div>
 
     <div class="callout">
-      <span class="ico">💡</span>
-      <span><strong>想改成自己的競品/視角</strong>：編輯 <code>config/sources.yaml</code> 改競品名單、<code>templates/prompts/compose.md</code> 改報告口徑。完全換主題等於 fork 後重寫 prompts，工程量另算。</span>
+      <span class="ico">🎨</span>
+      <span><strong>想改成自己關心的競品？</strong> 裝完後跟 Claude Code 說「我想把競品名單換成 XXX、YYY、ZZZ」，它會幫你改設定。報告口徑、標題、欄位都可以這樣請它調整。</span>
     </div>
   </section>
 
@@ -239,44 +244,44 @@
     <h2><span class="num">?</span>常見問題</h2>
 
     <details class="faq-item">
-      <summary>密鑰安全嗎？會不會洩漏？</summary>
-      <div class="body">所有密鑰寫到 <code>~/.config/hkreport/env</code>（<code>chmod 600</code>），只有你的 Mac 用戶讀得到；不入 git、不上 CI、不離開本機。Surge token 同理。Repo 本身為 public，但只含程式碼與模板，沒有任何真實密鑰。</div>
+      <summary>我完全不會寫程式碼，真的能用嗎？</summary>
+      <div class="body">完全不用懂。整個安裝過程是「AI 問你問題、你貼答案」這樣的對話 — 跟用 ChatGPT 沒兩樣。如果中間遇到任何看不懂的，直接問 Claude Code「這是什麼意思」，它會用人話解釋。出錯了也可以叫它幫你修。</div>
     </details>
 
     <details class="faq-item">
-      <summary>Mac 關機/睡眠的話會錯過嗎？</summary>
-      <div class="body">launchd 在 Mac 開機後會檢查錯過的觸發並補跑，仍受雙週閘門控制（不是錨點當天則 SKIP）。所以你只要保證錨點當天有開過機，就會跑。</div>
+      <summary>我的金鑰會不會被別人看到？</summary>
+      <div class="body">不會。所有金鑰存在你 Mac 本機的隱藏設定檔，只有你的帳號讀得到。不上網、不會放到 GitHub 程式碼倉庫、不會傳到任何雲端。公司 AI 中台金鑰也符合「不出機器」的合規要求。</div>
     </details>
 
     <details class="faq-item">
-      <summary>每期到底會花多少錢？</summary>
-      <div class="body">兩次 Claude Sonnet 4.6 呼叫（classify + compose），約 US$0.30–0.50/期。若觸發 VERIFY 失敗的 fix-up 重試，最多再多 US$0.10–0.20。每月 1–2 期，每月成本約 US$1。</div>
+      <summary>每期會花多少錢？誰付？</summary>
+      <div class="body">每期約 US$0.3–0.5（兩次 AI 呼叫），每月 1–2 期合計 ~US$1。公司 AI 中台金鑰一般可走報銷，等於零成本。Tavily 和 Firecrawl 免費額度也夠用。</div>
     </details>
 
     <details class="faq-item">
-      <summary>沒有 Mac 也能用嗎？</summary>
-      <div class="body">目前 launchd 排期只支援 macOS。理論上把 <code>run.sh</code> 改用 cron + 把 plist 換成 systemd 也能在 Linux 跑，但 repo 沒附這份適配。</div>
+      <summary>Mac 關機 / 睡眠的時候會錯過嗎？</summary>
+      <div class="body">不會。Mac 開機後會自動檢查並補跑（仍會按兩週節奏判斷）。你只要保證每兩週有開過一次機就好 — 一般正常用 Mac 工作的人都符合。</div>
     </details>
 
     <details class="faq-item">
-      <summary>想換時間 / 換域名 / 暫停 / 卸載？</summary>
-      <div class="body">
-        換時間：重跑 <code>bash install.sh</code>，向導會覆寫 env 與 plist。<br>
-        換域名：編輯 <code>~/.config/hkreport/env</code> 改 <code>SURGE_DOMAIN</code>。<br>
-        暫停：<code>launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.&lt;你&gt;.hkreport.plist</code>。<br>
-        卸載：repo 根目錄跑 <code>bash uninstall.sh</code>，可逐項選刪。
-      </div>
+      <summary>裝完之後我要做什麼？</summary>
+      <div class="body">什麼都不用做。每兩週去你的網址看當期內容即可。如果某期內容有問題，告訴 Claude Code，它會幫你查日誌、找原因、修好。</div>
     </details>
 
     <details class="faq-item">
-      <summary>跟現有的 hkreport.surge.sh 是同一份嗎？</summary>
-      <div class="body">是同一套程式碼，但裝完跑出來的是你自己的站點（你的域名、你的競品名單、你的視角）。原作者的 <code>hkreport.surge.sh</code> 繼續獨立運行，互不影響。</div>
+      <summary>不想跑了 / 想暫停一陣子怎麼辦？</summary>
+      <div class="body">直接跟 Claude Code 說「幫我暫停 hkreport 自動發報」或「幫我卸載 hkreport」，它會處理。你不用記命令、不用開 terminal。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>跟現有的 hkreport.surge.sh 是同一個嗎？</summary>
+      <div class="body">是同一套程式碼，但裝完跑出來的是「你自己的站」（你的網址、你關心的競品、你的口徑），跟現在這個站完全獨立、互不影響。原作者的也會繼續更新。</div>
     </details>
   </section>
 
   <div class="footer">
     Repo: <a href="https://github.com/mathewlam4fun-sys/hkreport" target="_blank">github.com/mathewlam4fun-sys/hkreport</a><br>
-    安裝有問題，找作者或在 GitHub 開 issue。
+    安裝過程有任何看不懂的，直接問 Claude Code 即可；或在 GitHub 開 issue。
   </div>
 
 </div>
