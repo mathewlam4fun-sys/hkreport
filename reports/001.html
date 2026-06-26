@@ -243,6 +243,12 @@
   .issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
   .issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
   .issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .issue-switcher .setup-cta {
+    background: rgba(96, 165, 250, 0.15); color: #93C5FD !important;
+    font-weight: 500; border: 1px solid rgba(96, 165, 250, 0.3);
+    margin-left: 6px;
+  }
+  .issue-switcher .setup-cta:hover { background: rgba(96, 165, 250, 0.35); color: white !important; }
   @media (max-width: 900px) {
     .issue-switcher { font-size: 11px; gap: 6px; padding: 5px 10px; }
   }
@@ -254,6 +260,7 @@
   <span class="label">Issues</span>
   <a href="001.html" class="active">#001 (03.01-04.03)</a>
   <a href="002.html">#002 (04.01-04.07)</a>
+  <a href="setup.html" class="setup-cta">🛠 自己跑一份 →</a>
 </div>
 <div class="progress-bar" id="progressBar"></div>
 

@@ -32,6 +32,12 @@
   .issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
   .issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
   .issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .issue-switcher .setup-cta {
+    background: rgba(96, 165, 250, 0.15); color: #93C5FD !important;
+    font-weight: 500; border: 1px solid rgba(96, 165, 250, 0.3);
+    margin-left: 6px;
+  }
+  .issue-switcher .setup-cta:hover { background: rgba(96, 165, 250, 0.35); color: white !important; }
 
   /* ===== LAYOUT ===== */
   .page { display: flex; }
@@ -246,6 +252,7 @@
 <div class="issue-switcher">
   <span class="label">Issues</span>
   <!-- {{ISSUE_LINKS}}: <a href="/NNN">#NNN (period)</a>, current issue gets class="active" -->
+  <a href="setup.html" class="setup-cta">🛠 自己跑一份 →</a>
 </div>
 
 <div class="progress-bar" id="progressBar"></div>

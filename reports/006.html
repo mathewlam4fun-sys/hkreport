@@ -31,6 +31,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang 
 .issue-switcher a:hover { color: white; background: rgba(255,255,255,0.1); }
 .issue-switcher a.active { color: white; background: var(--blue); font-weight: 600; }
 .issue-switcher .label { color: var(--gray-400); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .issue-switcher .setup-cta {
+    background: rgba(96, 165, 250, 0.15); color: #93C5FD !important;
+    font-weight: 500; border: 1px solid rgba(96, 165, 250, 0.3);
+    margin-left: 6px;
+  }
+  .issue-switcher .setup-cta:hover { background: rgba(96, 165, 250, 0.35); color: white !important; }
 
 .page { display: flex; }
 .anchor-nav {
@@ -237,6 +243,7 @@ tr:hover { background: var(--gray-50); }
   <a href="004.html">#004 (04.14–04.20)</a>
   <a href="005.html">#005 (04.21–05.20)</a>
   <a href="006.html" class="active">#006 (05.26–06.02)</a>
+  <a href="setup.html" class="setup-cta">🛠 自己跑一份 →</a>
 </div>
 
 <div class="progress-bar" id="progressBar"></div>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自助部署你自己的競品快報 | hkreport</title>
+<style>
+  :root {
+    --blue: #2563EB; --blue-bg: #EFF6FF; --blue-border: #BFDBFE;
+    --green: #059669; --green-bg: #F0FDF4; --green-border: #BBF7D0;
+    --yellow: #D97706; --yellow-bg: #FFFBEB; --yellow-border: #FDE68A;
+    --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280;
+    --gray-700: #374151; --gray-900: #111827;
+    --purple: #7C3AED; --purple-bg: #F5F3FF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    color: var(--gray-900); background: var(--gray-50); line-height: 1.65;
+  }
+
+  .topbar {
+    background: var(--gray-900); color: white;
+    padding: 8px 16px; font-size: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .topbar a { color: #94A3B8; text-decoration: none; padding: 3px 10px; border-radius: 4px; transition: all 0.15s; }
+  .topbar a:hover { color: white; background: rgba(255,255,255,0.1); }
+  .topbar .spacer { flex: 1; }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  .hero {
+    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+    color: white; padding: 36px 32px; border-radius: 14px; margin-bottom: 32px;
+  }
+  .hero .eyebrow { font-size: 11px; font-weight: 700; color: #93C5FD; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .hero p { font-size: 15px; color: #CBD5E1; max-width: 600px; }
+  .hero .stats {
+    display: flex; gap: 24px; margin-top: 22px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 12px; color: #94A3B8; flex-wrap: wrap;
+  }
+  .hero .stats strong { color: white; font-size: 14px; }
+
+  section { margin-bottom: 36px; }
+  h2 {
+    font-size: 18px; font-weight: 700; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2 .num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--blue); color: white; font-size: 13px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  p { font-size: 14.5px; color: var(--gray-700); margin-bottom: 12px; }
+
+  .card {
+    background: white; border-radius: 10px; padding: 20px 22px;
+    border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin-bottom: 14px;
+  }
+  .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: 13.5px; margin-bottom: 0; color: var(--gray-700); }
+  .card .meta { font-size: 12px; color: var(--gray-500); margin-top: 6px; }
+  .card a { color: var(--blue); text-decoration: none; }
+  .card a:hover { text-decoration: underline; }
+
+  ol.steps { list-style: none; counter-reset: step; padding: 0; }
+  ol.steps > li {
+    counter-increment: step; position: relative;
+    padding: 16px 18px 16px 56px; background: white;
+    border: 1px solid var(--gray-200); border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  ol.steps > li::before {
+    content: counter(step); position: absolute; left: 16px; top: 16px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--blue-bg); color: var(--blue);
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.steps > li strong { color: var(--gray-900); font-size: 14px; }
+  ol.steps > li .desc { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+  ol.steps > li a { color: var(--blue); text-decoration: none; font-weight: 500; }
+  ol.steps > li a:hover { text-decoration: underline; }
+
+  .install-box {
+    background: white; border: 1px solid var(--gray-200);
+    border-radius: 12px; padding: 22px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .install-box .label {
+    font-size: 11px; font-weight: 700; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px;
+  }
+  .install-box .hint { font-size: 13px; color: var(--gray-500); margin-top: 12px; }
+  .code-wrap { position: relative; }
+  pre.code {
+    background: var(--gray-900); color: #E5E7EB;
+    padding: 16px 56px 16px 18px; border-radius: 8px;
+    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+    font-size: 13px; line-height: 1.6; overflow-x: auto;
+    white-space: pre-wrap; word-break: break-all;
+  }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,0.1); color: #94A3B8;
+    border: none; padding: 5px 10px; border-radius: 5px;
+    font-size: 11px; cursor: pointer; font-weight: 600;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+  .copy-btn.copied { background: var(--green); color: white; }
+
+  .faq-item {
+    background: white; border: 1px solid var(--gray-200); border-radius: 8px;
+    margin-bottom: 8px; overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 14px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
+    list-style: none; display: flex; align-items: center; gap: 8px;
+    color: var(--gray-900);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::before { content: '+'; font-size: 18px; color: var(--gray-400); font-weight: 400; transition: transform 0.2s; }
+  .faq-item[open] summary::before { content: '−'; }
+  .faq-item summary:hover { background: var(--gray-50); }
+  .faq-item .body { padding: 0 18px 16px 36px; font-size: 13.5px; color: var(--gray-700); }
+  .faq-item .body code { background: var(--gray-100); padding: 1px 6px; border-radius: 3px; font-size: 12.5px; }
+
+  .callout {
+    background: var(--yellow-bg); border: 1px solid var(--yellow-border);
+    border-radius: 8px; padding: 12px 16px;
+    font-size: 13px; color: var(--gray-700); margin-bottom: 14px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .callout .ico { font-size: 16px; flex-shrink: 0; line-height: 1.4; }
+
+  .footer {
+    margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+    text-align: center; font-size: 12px; color: var(--gray-500);
+  }
+  .footer a { color: var(--blue); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .container { padding: 20px 16px 48px; }
+    .hero { padding: 24px 20px; border-radius: 10px; }
+    .hero h1 { font-size: 22px; }
+    pre.code { font-size: 12px; padding-right: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html">← 回到最新一期</a>
+  <span class="spacer"></span>
+  <a href="https://github.com/mathewlam4fun-sys/hkreport" target="_blank">GitHub ↗</a>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="eyebrow">Self-Host Guide</div>
+    <h1>想為你的團隊跑一份這樣的競品快報？</h1>
+    <p>整套服務已封裝為 GitHub repo，全程由 Claude Code 引導安裝。預備 5 分鐘 + 安裝 30 分鐘，你會擁有自己的 <code style="color:#93C5FD;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:3px;font-size:13px;">*.surge.sh</code> 站點，每雙週自動更新。</p>
+    <div class="stats">
+      <span><strong>~30 分鐘</strong> &nbsp;安裝</span>
+      <span><strong>US$0.3–0.5</strong> &nbsp;每期 API 成本</span>
+      <span><strong>密鑰不出機器</strong> &nbsp;本機 launchd</span>
+    </div>
+  </div>
+
+  <!-- ===== STEP 1: PREP ===== -->
+  <section>
+    <h2><span class="num">1</span>事前準備（5 分鐘）</h2>
+    <p>下列 4 樣東西安裝過程會用到，建議先準備齊：</p>
+
+    <ol class="steps">
+      <li>
+        <strong>公司 AI 平台 user-key</strong>
+        <div class="desc">找 IT / AI 平台組要一條（<code>user-key-...</code> 開頭）。本服務跑在你自己 Mac 上、走公司代理，符合 key 不出機器的政策。</div>
+      </li>
+      <li>
+        <strong>Tavily API key</strong>（新聞 / 社媒搜尋）
+        <div class="desc">到 <a href="https://app.tavily.com" target="_blank">app.tavily.com</a> 免費註冊，複製 <code>tvly-...</code> 開頭的 key。每月 1000 次查詢，足夠用。</div>
+      </li>
+      <li>
+        <strong>Firecrawl API key</strong>（網頁 JS 渲染抓取）
+        <div class="desc">到 <a href="https://firecrawl.dev" target="_blank">firecrawl.dev</a> 免費註冊，複製 <code>fc-...</code> 開頭的 key。</div>
+      </li>
+      <li>
+        <strong>想好你的 Surge 域名</strong>
+        <div class="desc">例如 <code>yourname-report.surge.sh</code>，任何 <code>*.surge.sh</code> 都可，先到先得。Surge 帳號安裝過程會引導你註冊。</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== STEP 2: INSTALL ===== -->
+  <section>
+    <h2><span class="num">2</span>一句話安裝</h2>
+    <p>打開 Claude Code 對話框，把下面這行原話貼進去：</p>
+
+    <div class="install-box">
+      <div class="label">Claude Code 安裝指令</div>
+      <div class="code-wrap">
+        <pre class="code" id="installCmd">幫我從 https://github.com/mathewlam4fun-sys/hkreport 拉取並按 HANDOFF-CLAUDE.md 安裝到我的 Mac</pre>
+        <button class="copy-btn" id="copyBtn" onclick="copyInstall()">複製</button>
+      </div>
+      <div class="hint">Claude 會主動逐項問你密鑰、域名、排期，跟著答即可。預檢、寫 env、建 venv、註冊 launchd、kickstart 驗證全自動完成。</div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 3: VERIFY ===== -->
+  <section>
+    <h2><span class="num">3</span>試跑一次驗證</h2>
+    <p>安裝結束後，Claude 會問你要不要花約 <strong>US$0.5</strong> 試跑一次完整 pipeline，建議跑一次：</p>
+
+    <div class="card">
+      <h3>看到這兩個訊號就代表成功</h3>
+      <p>① 你的 Surge 域名打開後出現 <code>富途 HK 行業快報 #001</code><br>
+      ② <code>~/Library/Logs/hkreport.log</code> 結尾顯示 <code>DEPLOY OK</code></p>
+      <div class="meta">之後每 14 天，週五 09:00（默認排期，可改）launchd 會自動跑下一期。Mac 關機錯過會在開機後補跑。</div>
+    </div>
+
+    <div class="callout">
+      <span class="ico">💡</span>
+      <span><strong>想改成自己的競品/視角</strong>：編輯 <code>config/sources.yaml</code> 改競品名單、<code>templates/prompts/compose.md</code> 改報告口徑。完全換主題等於 fork 後重寫 prompts，工程量另算。</span>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <h2><span class="num">?</span>常見問題</h2>
+
+    <details class="faq-item">
+      <summary>密鑰安全嗎？會不會洩漏？</summary>
+      <div class="body">所有密鑰寫到 <code>~/.config/hkreport/env</code>（<code>chmod 600</code>），只有你的 Mac 用戶讀得到；不入 git、不上 CI、不離開本機。Surge token 同理。Repo 本身為 public，但只含程式碼與模板，沒有任何真實密鑰。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Mac 關機/睡眠的話會錯過嗎？</summary>
+      <div class="body">launchd 在 Mac 開機後會檢查錯過的觸發並補跑，仍受雙週閘門控制（不是錨點當天則 SKIP）。所以你只要保證錨點當天有開過機，就會跑。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>每期到底會花多少錢？</summary>
+      <div class="body">兩次 Claude Sonnet 4.6 呼叫（classify + compose），約 US$0.30–0.50/期。若觸發 VERIFY 失敗的 fix-up 重試，最多再多 US$0.10–0.20。每月 1–2 期，每月成本約 US$1。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>沒有 Mac 也能用嗎？</summary>
+      <div class="body">目前 launchd 排期只支援 macOS。理論上把 <code>run.sh</code> 改用 cron + 把 plist 換成 systemd 也能在 Linux 跑，但 repo 沒附這份適配。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>想換時間 / 換域名 / 暫停 / 卸載？</summary>
+      <div class="body">
+        換時間：重跑 <code>bash install.sh</code>，向導會覆寫 env 與 plist。<br>
+        換域名：編輯 <code>~/.config/hkreport/env</code> 改 <code>SURGE_DOMAIN</code>。<br>
+        暫停：<code>launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.&lt;你&gt;.hkreport.plist</code>。<br>
+        卸載：repo 根目錄跑 <code>bash uninstall.sh</code>，可逐項選刪。
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>跟現有的 hkreport.surge.sh 是同一份嗎？</summary>
+      <div class="body">是同一套程式碼，但裝完跑出來的是你自己的站點（你的域名、你的競品名單、你的視角）。原作者的 <code>hkreport.surge.sh</code> 繼續獨立運行，互不影響。</div>
+    </details>
+  </section>
+
+  <div class="footer">
+    Repo: <a href="https://github.com/mathewlam4fun-sys/hkreport" target="_blank">github.com/mathewlam4fun-sys/hkreport</a><br>
+    安裝有問題，找作者或在 GitHub 開 issue。
+  </div>
+
+</div>
+
+<script>
+function copyInstall() {
+  var txt = document.getElementById('installCmd').textContent;
+  var btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(txt).then(function(){
+    btn.textContent = '已複製 ✓';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = '複製'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+</script>
+</body>
+</html>

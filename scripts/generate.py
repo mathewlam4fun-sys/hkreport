@@ -189,6 +189,7 @@ def build_issue_switcher(current: int) -> str:
         active = ' class="active"' if n == current else ""
         # Period strings live inside each file's header; for the switcher we use a short stub.
         parts.append(f'  <a href="{n:03d}.html"{active}>#{n:03d}</a>')
+    parts.append('  <a href="setup.html" class="setup-cta">🛠 自己跑一份 →</a>')
     parts.append("</div>")
     return "\n".join(parts)
 

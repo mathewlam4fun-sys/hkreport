@@ -42,6 +42,12 @@ body {
 .issue-switcher a.active {
   background: var(--gray-900); color: #fff; border-color: var(--gray-900);
 }
+.issue-switcher .setup-cta {
+  background: #EFF6FF; color: #2563EB !important;
+  border-color: #BFDBFE !important;
+  font-weight: 600; margin-left: 8px;
+}
+.issue-switcher .setup-cta:hover { background: #DBEAFE !important; border-color: #93C5FD !important; }
 .container { max-width: 900px; margin: 0 auto; padding: 24px 16px 80px; }
 header { text-align: center; margin-bottom: 32px; }
 header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
@@ -183,6 +189,7 @@ tr:hover td { background: var(--gray-50); }
   <a href="002.html">#002</a>
   <a href="003.html">#003</a>
   <a href="004.html" class="active">#004</a>
+  <a href="setup.html" class="setup-cta">🛠 自己跑一份 →</a>
 </div>
 
 <div class="container">
