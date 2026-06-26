@@ -4,7 +4,7 @@
 > 如果你是使用者，把以下這段話貼到 Claude Code 對話框：
 >
 > ```
-> 幫我從 https://github.com/<OWNER>/hkreport 拉取並按 HANDOFF-CLAUDE.md 安裝到我的 Mac
+> 幫我從 https://github.com/mathewlam4fun-sys/hkreport 拉取並按 HANDOFF-CLAUDE.md 安裝到我的 Mac
 > ```
 >
 > 之後跟著 Claude 的提問逐項回答即可。
@@ -27,11 +27,9 @@
 mkdir -p ~/workspace
 cd ~/workspace
 [ -d hkreport ] && { echo "已存在 ~/workspace/hkreport，請與使用者確認是否覆蓋"; exit 1; }
-git clone https://github.com/<OWNER>/hkreport.git
+git clone https://github.com/mathewlam4fun-sys/hkreport.git
 cd hkreport
 ```
-
-把 `<OWNER>` 替換為實際的 GitHub owner（從使用者貼的 URL 中取）。
 
 ### Phase 2 — 蒐集 9 個配置值
 
